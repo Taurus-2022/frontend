@@ -8,15 +8,10 @@ defineProps({
 
 <template>
   <div class="greetings">
+    <img alt="logo" class="logo" src="@/assets/20210809_tuanhui_new.png" width="80" height="80" />
     <h1> 文明典范·你我共创 </h1>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <button>点击签约</button>
   </div>
+  <img alt="jinniu" class="logo" src="@/assets/jingniu.jpeg"/>
 </template>
 
 <style scoped>
@@ -27,6 +22,10 @@ h1 {
 
 h3 {
   font-size: 1.2rem;
+}
+
+.greetings {
+  display: flex;
 }
 
 .greetings h1,
