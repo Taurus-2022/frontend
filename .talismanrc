@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: a84b38f5d04875cfead26487f124355016d4718e04dd705f752bac7fe3a1614a
+version: ""
+scopeconfig:
+  - scope: node
