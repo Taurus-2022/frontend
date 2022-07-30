@@ -8,17 +8,11 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <img
-      alt="logo"
-      class="logo"
-      src="@/assets/20210809_tuanhui_new.png"
-      width="80"
-      height="80"
-    />
+    <img alt="logo" class="logo" src="@/assets/20210809_tuanhui_new.png" width="80" height="80" />
     <h1>文明典范·你我共创</h1>
   </div>
   <div class="back-ground">
-<!--    <img alt="jinniu" class="logo" src="@/assets/jingniu.jpeg"/>-->
+    <!--    <img alt="jinniu" class="logo" src="@/assets/jingniu.jpeg"/>-->
   </div>
 </template>
 
