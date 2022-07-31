@@ -1,13 +1,9 @@
 // ESLint configuration
 // http://eslint.org/docs/user-guide/configuring
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
 
-  plugins: ['prettier'],
-
-  rules: {
-    'prettier/prettier': ['error'],
-  },
+  rules: {},
 
   settings: {
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'

@@ -18,19 +18,19 @@ onMounted(() => {
   });
 
   // 抵消字体放大的影响
-  const DEFAULT_FONT_SIZE = 16
-  const docEl = document.documentElement
-  let userWebsetFontDefaultSize = DEFAULT_FONT_SIZE
+  const DEFAULT_FONT_SIZE = 16;
+  const docEl = document.documentElement;
+  let userWebsetFontDefaultSize = DEFAULT_FONT_SIZE;
   // 用原生方法获取用户设置的浏览器的字体大小(兼容ie)
   if (docEl.currentStyle) {
-    userWebsetFontDefaultSize = docEl.currentStyle['fontSize']
+    userWebsetFontDefaultSize = docEl.currentStyle['fontSize'];
   } else {
-    userWebsetFontDefaultSize = getComputedStyle(docEl, false)['fontSize']
+    userWebsetFontDefaultSize = getComputedStyle(docEl, false)['fontSize'];
   }
   // 取数字部分
-  userWebsetFontDefaultSize = parseFloat(userWebsetFontDefaultSize)
+  userWebsetFontDefaultSize = parseFloat(userWebsetFontDefaultSize);
   // 将实际的字号除以默认字号
-  const sizeScale = userWebsetFontDefaultSize / DEFAULT_FONT_SIZE
+  const sizeScale = userWebsetFontDefaultSize / DEFAULT_FONT_SIZE;
 
   // 屏幕宽度375px时，html的字体大小为100px。其他宽度按比例计算
   function setRemUnit() {
@@ -39,8 +39,8 @@ onMounted(() => {
     //   width = 750
     // }
     // 满足等式width : size = 375 : 100
-    const rem = 16 / sizeScale
-    docEl.style.fontSize = rem + 'px'
+    const rem = 16 / sizeScale;
+    docEl.style.fontSize = rem + 'px';
   }
 
   setRemUnit();
