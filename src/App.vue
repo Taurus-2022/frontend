@@ -1,7 +1,13 @@
 <script setup>
-import { RouterView } from 'vue-router';
+// import { RouterView } from 'vue-router';
 import { onMounted } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
+import {Swiper,SwiperSlide} from 'swiper/vue';
+import {Pagination} from 'swiper';
+import "swiper/css";
+
+import "swiper/css/pagination";
+import "./style.css";
 
 onMounted(() => {
   console.log(`the component is now mounted.`);
@@ -48,16 +54,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld />
-      <nav>
-        <!--        <RouterLink to="/">Home</RouterLink>-->
-        <!--        <RouterLink to="/about">About</RouterLink>-->
-      </nav>
-    </div>
-  </header>
-  <RouterView />
+  <swiper :direction="'vertical'" :modules="[Pagination]" :pagination="{clickable:true}" >
+    <swiper-slide>
+      <HelloWorld/>
+    </swiper-slide>
+    <swiper-slide>
+      <HelloWorld/>
+    </swiper-slide>
+    <swiper-slide>
+      <HelloWorld/>
+    </swiper-slide>
+  </swiper>
+<!--  <header>-->
+<!--    <div class="wrapper">-->
+<!--      <HelloWorld />-->
+<!--      <nav>-->
+<!--        &lt;!&ndash;        <RouterLink to="/">Home</RouterLink>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <RouterLink to="/about">About</RouterLink>&ndash;&gt;-->
+<!--      </nav>-->
+<!--    </div>-->
+<!--  </header>-->
+<!--  <RouterView />-->
+
 </template>
 
 <style scoped></style>
