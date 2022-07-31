@@ -2,6 +2,7 @@
 defineProps({
   msg: {
     type: String,
+    default: 'msg'
   },
 });
 </script>
