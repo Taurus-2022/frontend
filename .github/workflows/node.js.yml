@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: http://sign.taurus.cd.dev.peanut996.cn
+      url: https://sign.taurus.cd.dev.peanut996.cn
 
     steps:
       - uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
       - deploy-dev
     environment:
       name: prod
-      url: http://sign.taurus.cd.prod.peanut996.cn
+      url: https://sign.taurus.cd.prod.peanut996.cn
 
     steps:
       - uses: actions/checkout@v3
