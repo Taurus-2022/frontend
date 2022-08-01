@@ -13,7 +13,7 @@
           "outputPath": "dist",
           "ignore": [".git", ".github", "node_modules", "cloudbaserc.js","cloudbaserc.json"],
           "envVariables": {
-            "stage": "{{STAGE}}"
+            "stage": "{{env:STAGE}}"
           }
         }
       }
