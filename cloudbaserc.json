@@ -3,6 +3,7 @@
   "version": "2.0",
   "region": "ap-guangzhou",
   "framework": {
+    "name": "dev",
     "plugins": {
       "client": {
         "use": "@cloudbase/framework-plugin-website",
