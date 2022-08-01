@@ -1,9 +1,9 @@
 {
-  "envId": "{{env.envId}}",
+  "envId": "{{envId}}",
   "version": "2.0",
   "region": "ap-guangzhou",
   "framework": {
-    "name": "dev",
+    "name": "{{APP_NAME}}",
     "plugins": {
       "client": {
         "use": "@cloudbase/framework-plugin-website",
@@ -13,7 +13,7 @@
           "outputPath": "dist",
           "ignore": [".git", ".github", "node_modules", "cloudbaserc.js","cloudbaserc.json"],
           "envVariables": {
-            "stage": "{{env.STAGE}}"
+            "stage": "{{STAGE}}"
           }
         }
       }
