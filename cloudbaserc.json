@@ -1,5 +1,5 @@
 {
-  "envId": "{{envId}}",
+  "envId": "{{env.envId}}",
   "version": "2.0",
   "region": "ap-guangzhou",
   "framework": {
@@ -13,7 +13,7 @@
           "outputPath": "dist",
           "ignore": [".git", ".github", "node_modules", "cloudbaserc.js","cloudbaserc.json"],
           "envVariables": {
-            "stage": "{{env:STAGE}}"
+            "stage": "{{env.STAGE}}"
           }
         }
       }

@@ -18,14 +18,12 @@ jobs:
       with:
         node-version: 18
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-
 
     - name: Deploy to Tencent CloudBase
       uses: TencentCloudBase/cloudbase-action@v2.0.1
+      env:
+        STAGE: ${{secrets.STAGE}}
       with:
         secretId: ${{ secrets.TENCENT_SECRET_ID }}
         secretKey: ${{ secrets.TENCENT_SECRET_KEY }}
         envId: ${{secrets.TENCENT_ENV_ID}}
-        STAGE: ${{secrets.STAGE}}
