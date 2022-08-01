@@ -28,3 +28,4 @@ jobs:
         secretId: ${{ secrets.TENCENT_SECRET_ID }}
         secretKey: ${{ secrets.TENCENT_SECRET_KEY }}
         envId: ${{secrets.TENCENT_ENV_ID}}
+        STAGE: ${{secrets.STAGE}}
