@@ -1,11 +1,11 @@
 <script setup>
 // import { onMounted } from 'vue';
-import Page2 from './components/page-2.vue';
+// import Page2 from './components/page-2.vue';
 import Page3 from './components/page-3.vue';
-import Page1 from './components/page-1.vue';
-import Page4 from './components/page-4.vue';
-import { useStore } from './stores/pageIndex';
-const store = useStore()
+// import Page1 from './components/page-1.vue';
+// import Page4 from './components/page-4.vue';
+// import { useStore } from './stores/pageIndex';
+// const store = useStore()
 // onMounted(() => {
 //   console.log(`the component is now mounted.`);
 //   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -44,18 +44,19 @@ const store = useStore()
 </script>
 
 <template>
-  <Transition name="fade">
-    <page1 v-if='store.currentPageIndex == 1'/>
-  </Transition>
-  <Transition name="fade">
-    <page2 v-if='store.currentPageIndex == 2'/>
-  </Transition>
-  <Transition name="fade">
-    <page3 v-if='store.currentPageIndex == 3'/>
-  </Transition>
-  <Transition name="fade">
-    <page4 v-if='store.currentPageIndex == 4'/>
-  </Transition>
+<!--  <Transition name="fade">-->
+<!--    <page1 v-if='store.currentPageIndex == 1'/>-->
+<!--  </Transition>-->
+<!--  <Transition name="fade">-->
+<!--    <page2 v-if='store.currentPageIndex == 2'/>-->
+<!--  </Transition>-->
+<!--  <Transition name="fade">-->
+<!--    <page3 v-if='store.currentPageIndex == 3'/>-->
+<!--  </Transition>-->
+<!--  <Transition name="fade">-->
+<!--    <page4 v-if='store.currentPageIndex == 4'/>-->
+<!--  </Transition>-->
+  <page3/>
 </template>
 
 <style scoped>
