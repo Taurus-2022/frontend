@@ -8,9 +8,22 @@ defineProps({
 </script>
 
 <template>
-  <img src='/src/assets/p4.png'>
+  <div class='container'>
+    <img class='background' src='/src/assets/p4.png'>
+  </div>
 </template>
 
-<style scoped>
-
+<style lang='scss' scoped>
+.container {
+  overflow: auto;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+  padding: 0;
+.background {
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+}
+}
 </style>

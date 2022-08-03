@@ -1,9 +1,9 @@
 <script setup>
 // import { onMounted } from 'vue';
-// import Page1 from './components/page-1.vue';
-// import Page2 from './components/page-2.vue';
+import Page2 from './components/page-2.vue';
 import Page3 from './components/page-3.vue';
-// import Page4 from './components/page-4.vue';
+import Page1 from './components/page-1.vue';
+import Page4 from './components/page-4.vue';
 
 // onMounted(() => {
 //   console.log(`the component is now mounted.`);
@@ -43,7 +43,10 @@ import Page3 from './components/page-3.vue';
 </script>
 
 <template>
-      <page3/>
+  <page1/>
+  <page2/>
+  <page3/>
+  <page4/>
 </template>
 
 <style scoped></style>

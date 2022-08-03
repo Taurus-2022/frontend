@@ -1,5 +1,4 @@
 <script setup>
-// import imagePath from '@/assets/p3.png'
 defineProps({
   msg: {
     type: String,
@@ -10,24 +9,22 @@ defineProps({
 
 <template>
   <div class='container'>
-    <p>dddddd</p>
-    <img src='/src/assets/p3.png'>
-    <p>dddddd</p>
+    <img class='background' src='/src/assets/p3.png'>
   </div>
-
 </template>
 
-<style scoped>
+<style lang='scss' scoped>
 .container {
-  overflow: auto; /* adds scrollbars */
-  background-color: blue;
+  overflow: auto;
   position: relative;
-  -webkit-overflow-scrolling: touch
-}
-div img{
-  width: 100%;
-  min-height: 1003px;
-  vertical-align: bottom;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+  padding: 0;
+  .background {
+    min-height: 100vh;
+    width: 100vw;
+    position: absolute;
+  }
 }
 
 </style>
