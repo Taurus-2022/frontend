@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <img src='src/assets/p1.png'>
+  <img src='/src/assets/p1.png'>
 </template>
 
 <style scoped>
