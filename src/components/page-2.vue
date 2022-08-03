@@ -1,15 +1,18 @@
-page-1.vue<script setup>
+<script setup>
+import { useStore } from '../stores/pageIndex';
+
 defineProps({
   msg: {
     type: String,
     default: 'msg'
   },
 });
+const store = useStore()
 </script>
 
 <template>
   <div class='container'>
-    <img class='background' src='/src/assets/p2.png'>
+    <img class='background' src='/src/assets/p2.png' @click="store.nextPageIndex">
   </div>
 </template>
 

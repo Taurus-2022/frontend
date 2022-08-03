@@ -1,15 +1,18 @@
 <script setup>
+import { useStore } from '../stores/pageIndex';
+
 defineProps({
   msg: {
     type: String,
     default: 'msg'
   },
 });
+const store = useStore()
 </script>
 
 <template>
   <div class='container'>
-    <img class='background' src='/src/assets/p4.png'>
+    <img class='background' src='/src/assets/p4.png' @click="store.firstPageIndex">
   </div>
 </template>
 

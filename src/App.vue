@@ -4,7 +4,8 @@ import Page2 from './components/page-2.vue';
 import Page3 from './components/page-3.vue';
 import Page1 from './components/page-1.vue';
 import Page4 from './components/page-4.vue';
-
+import { useStore } from './stores/pageIndex';
+const store = useStore()
 // onMounted(() => {
 //   console.log(`the component is now mounted.`);
 //   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -14,7 +15,7 @@ import Page4 from './components/page-4.vue';
 //   // We listen to the resize event
 //   window.addEventListener('resize', () => {
 //     // We execute the same script as before
-//     const vh = window.innerHeight * 0.01;
+//     const vh = window.innerHeight * 0.01
 //     document.documentElement.style.setProperty('--vh', `${vh}px`);
 //     setRemUnit();
 //   });
@@ -43,10 +44,39 @@ import Page4 from './components/page-4.vue';
 </script>
 
 <template>
-  <page1/>
-  <page2/>
-  <page3/>
-  <page4/>
+  <Transition name="fade">
+    <page1 v-if='store.currentPageIndex == 1'/>
+  </Transition>
+  <Transition name="fade">
+    <page2 v-if='store.currentPageIndex == 2'/>
+  </Transition>
+  <Transition name="fade">
+    <page3 v-if='store.currentPageIndex == 3'/>
+  </Transition>
+  <Transition name="fade">
+    <page4 v-if='store.currentPageIndex == 4'/>
+  </Transition>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active {
+  transition-delay: 0.3s;
+  ransition-property: opacity;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+}
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter-to,
+.fade-leave-leave {
+  opacity: 1;
+}
+.fade-enter-from{
+  opacity: 0.3;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
