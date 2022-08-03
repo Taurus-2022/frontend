@@ -1,7 +1,5 @@
 <script setup>
 // import { onMounted } from 'vue';
-import "swiper/css";
-import 'swiper/css/effect-fade';
 // import Page1 from './components/page-1.vue';
 // import Page2 from './components/page-2.vue';
 import Page3 from './components/page-3.vue';
