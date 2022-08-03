@@ -36,14 +36,14 @@ const store = useStore()
       <p>让我们一起践行</p>
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
-    <van-swipe
-class="my-swipe" style="width: 70vw; top: 50%; left: 50%;
-    transform: translateX(-50%);" :autoplay="3000" indicator-color="white">
+    <div class='swiper-container'>
+    <van-swipe class="my-swipe" style="width: 70vw;" :autoplay="3000" indicator-color="white">
       <van-swipe-item>1</van-swipe-item>
       <van-swipe-item>2</van-swipe-item>
       <van-swipe-item>3</van-swipe-item>
       <van-swipe-item>4</van-swipe-item>
     </van-swipe>
+      </div>
   </div>
 </template>
 
@@ -61,16 +61,21 @@ class="my-swipe" style="width: 70vw; top: 50%; left: 50%;
   }
   .text-header{
     width: 60vw;
-    font-size: 1rem;
+    font-size: 0.8rem;
     position: absolute;
     text-align: center;
-    top: 21%;
+    top: 22%;
     left: 50%;
     transform: translateX(-50%);
   }
 
+  .swiper-container {
+    width: 70vw;
+    top: 50%; left: 50%;
+    transform: translateX(-50%);
+  }
   .my-swipe .van-swipe-item {
-    width: 60vw;
+    width: 70vw;
     color: #fff;
     font-size: 20px;
     line-height: 150px;
