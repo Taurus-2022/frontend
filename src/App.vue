@@ -1,13 +1,15 @@
 <script setup>
-// import { RouterView } from 'vue-router';
 import { onMounted } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 import {Swiper,SwiperSlide} from 'swiper/vue';
-import {Pagination} from 'swiper';
+import {Pagination, EffectFade} from 'swiper';
 import "swiper/css";
+import 'swiper/css/effect-fade';
 
-import "swiper/css/pagination";
 import "./style.css";
+import Page1 from './components/page-1.vue';
+import Page2 from './components/page-2.vue';
+import Page3 from './components/page-3.vue';
+import Page4 from './components/page-4.vue';
 
 onMounted(() => {
   console.log(`the component is now mounted.`);
@@ -37,14 +39,7 @@ onMounted(() => {
   userWebsetFontDefaultSize = parseFloat(userWebsetFontDefaultSize);
   // 将实际的字号除以默认字号
   const sizeScale = userWebsetFontDefaultSize / DEFAULT_FONT_SIZE;
-
-  // 屏幕宽度375px时，html的字体大小为100px。其他宽度按比例计算
   function setRemUnit() {
-    // let width = docEl.clientWidth
-    // if (width > 750) {
-    //   width = 750
-    // }
-    // 满足等式width : size = 375 : 100
     const rem = 16 / sizeScale;
     docEl.style.fontSize = rem + 'px';
   }
@@ -54,28 +49,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <swiper :direction="'vertical'" :modules="[Pagination]" :pagination="{clickable:true}" >
+  <swiper
+:direction="'vertical'"
+          :effect="'fade'"
+          :modules="[Pagination, EffectFade]" :pagination="{clickable:false, showsPagination: false}"
+  >
     <swiper-slide>
-      <HelloWorld/>
+      <page1/>
     </swiper-slide>
     <swiper-slide>
-      <HelloWorld/>
+      <page2/>
     </swiper-slide>
     <swiper-slide>
-      <HelloWorld/>
+      <page3/>
+    </swiper-slide>
+    <swiper-slide>
+      <page4/>
     </swiper-slide>
   </swiper>
-<!--  <header>-->
-<!--    <div class="wrapper">-->
-<!--      <HelloWorld />-->
-<!--      <nav>-->
-<!--        &lt;!&ndash;        <RouterLink to="/">Home</RouterLink>&ndash;&gt;-->
-<!--        &lt;!&ndash;        <RouterLink to="/about">About</RouterLink>&ndash;&gt;-->
-<!--      </nav>-->
-<!--    </div>-->
-<!--  </header>-->
-<!--  <RouterView />-->
-
 </template>
 
 <style scoped></style>
