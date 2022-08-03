@@ -73,6 +73,7 @@ const store = useStore()
     width: 70vw;
     top: 50%; left: 50%;
     transform: translateX(-50%);
+    overflow: hidden;
   }
   .my-swipe .van-swipe-item {
     width: 70vw;
