@@ -50,10 +50,15 @@ const store = useStore()
       </van-swipe>
       </div>
     <div class='sign-text-container'>
-
+      <p>创建文明典范城市是一场没有终点的幸福接力，</p>
+      <p>它渗透于城市发展中、融合在市井生活里，</p>
+      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
     </div>
     <div class='sign-button'></div>
-    <div class='signed-container'></div>
+    <div class='signed-container'>
+      <p>你已成为第<span> 0000 </span>位</p>
+      <p>支持金牛区创建全国文明典范城市的人！</p>
+    </div>
   </div>
 </template>
 

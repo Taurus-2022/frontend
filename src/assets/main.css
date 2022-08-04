@@ -5,15 +5,21 @@
   max-width: 100vw;
   max-height: 100vh;
   overflow: auto;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ccdbf5), to(#7db2cc)) fixed;
 }
 
 /*字体缩放*/
+html {
+  height: 100%;
+}
 body {
-  background: rgb(204, 219, 245);
+  height: 100%;
+  /*background-color: #ccdbf5;*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#ccdbf5), to(#7db2cc)) fixed;
   -webkit-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
   -moz-text-size-adjust: 100% !important;
-  color: #2c3e50;
+  color: #4a699b;
 }
 
 /*reset*/
