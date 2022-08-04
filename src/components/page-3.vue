@@ -56,7 +56,7 @@ const store = useStore()
     </div>
     <div class='sign-button'></div>
     <div class='signed-container'>
-      <p>你已成为第<span> 0000 </span>位</p>
+      <p>你已成为第<span> 00000000 </span>位</p>
       <p>支持金牛区创建全国文明典范城市的人！</p>
     </div>
   </div>
@@ -103,10 +103,12 @@ const store = useStore()
       top: 10rem;
     }
     @media screen and (min-width: 600px) {
+      font-size: 0.7rem;
       top: 9.3rem;
     }
     @media screen and (min-width: 700px) {
-      top: 8.6rem;
+      font-size: 0.6rem;
+      top: 9rem;
     }
     @media screen and (min-width: 800px) {
       top: 9.2rem;
@@ -157,6 +159,133 @@ const store = useStore()
     }
     color: #fff;
     text-align: center;
+  }
+
+  .sign-text-container {
+    min-width: 295.2px;
+    width: 82vw;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    top: 52rem;
+    left: 50%;
+    transform: translateX(-50%);
+    p {
+      text-align: center;
+    }
+    @media screen and (min-width: 370px) {
+      top: 54rem;
+    }
+    @media screen and (min-width: 390px) {
+      top: 49.5rem;
+    }
+    @media screen and (min-width: 400px) {
+      top: 51rem;
+    }
+    @media screen and (min-width: 410px) {
+      top: 53rem;
+    }
+    @media screen and (min-width: 450px) {
+      top: 57rem;
+    }
+    @media screen and (min-width: 470px) {
+      top: 60rem;
+    }
+    @media screen and (min-width: 500px) {
+      top: 53rem;
+    }
+    @media screen and (min-width: 530px) {
+      top: 57rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 58rem;
+    }
+    @media screen and (min-width: 580px) {
+      top: 62rem;
+    }
+    @media screen and (min-width: 600px) {
+      font-size: 0.7rem;
+      top: 50rem;
+    }
+    @media screen and (min-width: 700px) {
+      font-size: 0.6rem;
+      top: 52rem;
+    }
+    @media screen and (min-width: 750px) {
+      top: 50rem;
+    }
+    @media screen and (min-width: 800px) {
+      top: 52rem;
+    }
+  }
+  .signed-container {
+    min-width: 295.2px;
+    width: 82vw;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    top: 58rem;
+    left: 50%;
+    transform: translateX(-50%);
+    p {
+      text-align: center;
+      span {
+        color:#cb7c39;font-weight: 800;font-size: 1rem;
+      }
+
+    }
+    @media screen and (min-width: 370px) {
+      top: 60rem;
+    }
+    @media screen and (min-width: 390px) {
+      top: 55rem;
+    }
+    @media screen and (min-width: 400px) {
+      top: 57rem;
+    }
+    @media screen and (min-width: 410px) {
+      top: 58rem;
+    }
+    @media screen and (min-width: 450px) {
+      top: 63rem;
+    }
+    @media screen and (min-width: 470px) {
+      top: 66rem;
+    }
+    @media screen and (min-width: 500px) {
+      top: 58rem;
+    }
+    @media screen and (min-width: 530px) {
+      top: 61rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 60rem;
+    }
+    @media screen and (min-width: 580px) {
+      top: 62rem;
+    }
+    @media screen and (min-width: 600px) {
+      font-size: 0.7rem;
+      top: 55rem;
+      span {
+        font-size: 0.8rem;
+      }
+    }
+    @media screen and (min-width: 700px) {
+      font-size: 0.6rem;
+      top: 55rem;
+      span {
+        font-size: 0.7rem;
+      }
+    }
+    @media screen and (min-width: 750px) {
+      top: 55rem;
+    }
+    @media screen and (min-width: 800px) {
+      top: 58rem;
+    }
   }
 }
 
