@@ -17,16 +17,16 @@ import { useStore } from '../stores/pageIndex';
 import { ref } from 'vue';
 
 const images = [
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp1.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp2.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp3.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp4.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp5.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp6.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp7.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp8.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp9.png',
-  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp10.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp2.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp3.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp4.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp5.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp6.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp7.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp8.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp9.png',
+  'https://bucket.taurus.cd.peanut996.cn/img/sp10.png',
 ];
 
 const store = useStore()
