@@ -47,7 +47,7 @@ const store = useStore()
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
     <div class='swiper-container'>
-      <van-swipe class="my-swipe" style="width: 15rem;" :autoplay="3000" lazy-render indicator-color="white">
+      <van-swipe class="my-swipe" style="width: 16rem;" :autoplay="3000" lazy-render indicator-color="white">
         <van-swipe-item v-for="image in images" :key="image">
           <img :src="image" />
         </van-swipe-item>
@@ -108,7 +108,7 @@ const store = useStore()
 
   .swiper-container {
     min-width: 252px;
-    width: 15rem;
+    width: 16rem;
     top: 20rem;
     left: 50%;
     transform: translateX(-50%);
@@ -142,13 +142,13 @@ const store = useStore()
 
   }
   .my-swipe .van-swipe-item {
-    width: 15rem;
+    width: 16rem;
     img {
-      width: 100%;
+      width: 16rem;
     }
     color: #fff;
     text-align: center;
-    background-color: #39a9ed;
+    //background-color: #39a9ed;
   }
 }
 
