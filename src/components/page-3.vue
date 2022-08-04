@@ -37,7 +37,7 @@ const store = useStore()
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
     <div class='swiper-container'>
-    <van-swipe class="my-swipe" style="width: 70vw;" :autoplay="3000" indicator-color="white">
+    <van-swipe class="my-swipe" style="width: 15rem;" :autoplay="3000" indicator-color="white">
       <van-swipe-item>1</van-swipe-item>
       <van-swipe-item>2</van-swipe-item>
       <van-swipe-item>3</van-swipe-item>
@@ -49,34 +49,91 @@ const store = useStore()
 
 <style lang='scss' scoped>
 .container {
+  min-width: 360px;
   overflow: auto;
   position: relative;
   -webkit-overflow-scrolling: touch;
   height: 100vh;
   padding: 0;
   .background {
+    min-width: 360px;
     min-height: 100vh;
     width: 100vw;
     position: absolute;
   }
   .text-header{
+    min-width: 216px;
     width: 60vw;
     font-size: 0.8rem;
+    line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 22%;
+    top: 9.3rem;
     left: 50%;
     transform: translateX(-50%);
+    @media screen and (min-width: 390px) {
+      top: 9rem;
+    }
+    @media screen and (min-width: 400px) {
+      top: 9.2rem;
+    }
+    @media screen and (min-width: 450px) {
+      top: 10rem;
+    }
+    @media screen and (min-width: 500px) {
+      top: 9rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 10rem;
+    }
+    @media screen and (min-width: 600px) {
+      top: 9.3rem;
+    }
+    @media screen and (min-width: 700px) {
+      top: 8.6rem;
+    }
+    @media screen and (min-width: 800px) {
+      top: 9.2rem;
+    }
   }
 
   .swiper-container {
-    width: 70vw;
-    top: 50%; left: 50%;
+    min-width: 252px;
+    width: 15rem;
+    top: 20rem;
+    left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
+    @media screen and (min-width: 390px) {
+      top: 19rem;
+    }
+    @media screen and (min-width: 400px) {
+      top: 20.5rem;
+    }
+    @media screen and (min-width: 450px) {
+      top: 23rem;
+    }
+
+    @media screen and (min-width: 500px) {
+      top: 20rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 23rem;
+    }
+    @media screen and (min-width: 600px) {
+      top: 19rem;
+    }
+    @media screen and (min-width: 700px) {
+      top: 19rem;
+    }
+    @media screen and (min-width: 800px) {
+      top: 20rem;
+    }
+
+
   }
   .my-swipe .van-swipe-item {
-    width: 70vw;
+    width: 15rem;
     color: #fff;
     font-size: 20px;
     line-height: 150px;
