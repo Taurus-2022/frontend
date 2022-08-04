@@ -14,13 +14,23 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-
-defineProps({
-  msg: {
-    type: String,
-    default: 'msg'
-  },
-});
+import sp1Path from '../assets/swiper/sp1.png'
+import sp2Path from '../assets/swiper/sp2.png'
+import sp3Path from '../assets/swiper/sp3.png'
+import sp4Path from '../assets/swiper/sp4.png'
+import sp5Path from '../assets/swiper/sp5.png'
+import sp6Path from '../assets/swiper/sp6.png'
+import sp7Path from '../assets/swiper/sp7.png'
+import sp8Path from '../assets/swiper/sp8.png'
+import sp9Path from '../assets/swiper/sp9.png'
+import sp10Path from '../assets/swiper/sp10.png'
+const images = [
+  sp1Path, sp2Path, sp3Path, sp4Path, sp5Path, sp6Path, sp7Path, sp8Path, sp9Path, sp10Path,
+]
+// const images = [
+  // 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+  // 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
+// ];
 
 const store = useStore()
 
@@ -37,12 +47,11 @@ const store = useStore()
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
     <div class='swiper-container'>
-    <van-swipe class="my-swipe" style="width: 15rem;" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
-    </van-swipe>
+      <van-swipe class="my-swipe" style="width: 15rem;" :autoplay="3000" lazy-render indicator-color="white">
+        <van-swipe-item v-for="image in images" :key="image">
+          <img :src="image" />
+        </van-swipe-item>
+      </van-swipe>
       </div>
   </div>
 </template>
@@ -134,9 +143,10 @@ const store = useStore()
   }
   .my-swipe .van-swipe-item {
     width: 15rem;
+    img {
+      width: 100%;
+    }
     color: #fff;
-    font-size: 20px;
-    line-height: 150px;
     text-align: center;
     background-color: #39a9ed;
   }
