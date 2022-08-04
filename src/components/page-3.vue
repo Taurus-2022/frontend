@@ -14,23 +14,19 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import sp1Path from '../assets/swiper/sp1.png'
-import sp2Path from '../assets/swiper/sp2.png'
-import sp3Path from '../assets/swiper/sp3.png'
-import sp4Path from '../assets/swiper/sp4.png'
-import sp5Path from '../assets/swiper/sp5.png'
-import sp6Path from '../assets/swiper/sp6.png'
-import sp7Path from '../assets/swiper/sp7.png'
-import sp8Path from '../assets/swiper/sp8.png'
-import sp9Path from '../assets/swiper/sp9.png'
-import sp10Path from '../assets/swiper/sp10.png'
+
 const images = [
-  sp1Path, sp2Path, sp3Path, sp4Path, sp5Path, sp6Path, sp7Path, sp8Path, sp9Path, sp10Path,
-]
-// const images = [
-  // 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-  // 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-// ];
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp1.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp2.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp3.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp4.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp5.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp6.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp7.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp8.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp9.png',
+  'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp10.png',
+];
 
 const store = useStore()
 
@@ -53,6 +49,11 @@ const store = useStore()
         </van-swipe-item>
       </van-swipe>
       </div>
+    <div class='sign-text-container'>
+
+    </div>
+    <div class='sign-button'></div>
+    <div class='signed-container'></div>
   </div>
 </template>
 
@@ -70,6 +71,7 @@ const store = useStore()
     width: 100vw;
     position: absolute;
   }
+
   .text-header{
     min-width: 216px;
     width: 60vw;
@@ -109,15 +111,15 @@ const store = useStore()
   .swiper-container {
     min-width: 252px;
     width: 16rem;
-    top: 20rem;
+    top: 22rem;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
     @media screen and (min-width: 390px) {
-      top: 19rem;
+      top: 20rem;
     }
     @media screen and (min-width: 400px) {
-      top: 20.5rem;
+      top: 21rem;
     }
     @media screen and (min-width: 450px) {
       top: 23rem;
@@ -141,14 +143,15 @@ const store = useStore()
 
 
   }
+
   .my-swipe .van-swipe-item {
     width: 16rem;
     img {
       width: 16rem;
+      height: 24rem;
     }
     color: #fff;
     text-align: center;
-    //background-color: #39a9ed;
   }
 }
 
