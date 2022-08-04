@@ -14,6 +14,7 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
+import { ref } from 'vue';
 
 const images = [
   'https://taurus-1313105072.cos.ap-chengdu.myqcloud.com/img/sp1.png',
@@ -30,6 +31,11 @@ const images = [
 
 const store = useStore()
 
+const sign = ref(false);
+function userSign() {
+  sign.value = true
+
+}
 
 </script>
 
@@ -54,8 +60,10 @@ const store = useStore()
       <p>它渗透于城市发展中、融合在市井生活里，</p>
       <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
     </div>
-    <div class='sign-button'></div>
-    <div class='signed-container'>
+    <div v-show='sign===false' class='signed-container'>
+      <div class='sign-button' @click='userSign'>点击签约</div>
+    </div>
+    <div v-show='sign===true' class='signed-container'>
       <p>你已成为第<span> 00000000 </span>位</p>
       <p>支持金牛区创建全国文明典范城市的人！</p>
     </div>
@@ -218,6 +226,18 @@ const store = useStore()
     @media screen and (min-width: 800px) {
       top: 52rem;
     }
+  }
+
+  .sign-button {
+    width: 40vw;
+    background: #ccdbf5;
+    padding: 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-radius: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 1.5px 1.8px 0 1px #9fb8e8;
   }
   .signed-container {
     min-width: 295.2px;
