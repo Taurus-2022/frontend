@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
-// import Page2 from './components/page-2.vue';
+import Page2 from './components/page-2.vue';
 // import Page3 from './components/page-3.vue';
 // import Page1 from './components/page-1.vue';
-import Page4 from './components/page-4.vue';
+// import Page4 from './components/page-4.vue';
 // import { useStore } from './stores/pageIndex';
 // const store = useStore()
 onMounted(() => {
@@ -58,7 +58,7 @@ onMounted(() => {
 <!--  <Transition name="fade">-->
 <!--    <page4 v-if='store.currentPageIndex == 4'/>-->
 <!--  </Transition>-->
-  <page4/>
+  <page2/>
 </template>
 
 <style scoped>
