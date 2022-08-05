@@ -54,6 +54,10 @@ function userSign() {
           <img :src="image" />
         </van-swipe-item>
       </van-swipe>
+      <div class='arrow-icon-container'>
+        <van-icon name="arrow-left" size="2rem"/>
+        <van-icon name="arrow" size="2rem"/>
+      </div>
       </div>
     <div class='slide-container'>
       <p>创建文明典范城市是一场没有终点的幸福接力，</p>
@@ -128,12 +132,24 @@ function userSign() {
   }
 
   .swiper-container {
+    position: relative;
     min-width: 252px;
     width: 16rem;
     top: 22rem;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
+
+    .arrow-icon-container {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     @media screen and (min-width: 390px) {
       top: 20rem;
     }
@@ -159,8 +175,6 @@ function userSign() {
     @media screen and (min-width: 800px) {
       top: 20rem;
     }
-
-
   }
 
   .my-swipe .van-swipe-item {
