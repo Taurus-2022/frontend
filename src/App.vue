@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
 // import Page2 from './components/page-2.vue';
-import Page3 from './components/page-3.vue';
+// import Page3 from './components/page-3.vue';
 // import Page1 from './components/page-1.vue';
-// import Page4 from './components/page-4.vue';
+import Page4 from './components/page-4.vue';
 // import { useStore } from './stores/pageIndex';
 // const store = useStore()
 onMounted(() => {
@@ -58,15 +58,15 @@ onMounted(() => {
 <!--  <Transition name="fade">-->
 <!--    <page4 v-if='store.currentPageIndex == 4'/>-->
 <!--  </Transition>-->
-  <page3/>
+  <page4/>
 </template>
 
 <style scoped>
 .fade-enter-active {
-  transition-delay: 0.3s;
-  ransition-property: opacity;
+  transition-delay: 0.4s;
+  transition-property: opacity;
   transition-duration: 0.7s;
-  transition-timing-function: linear;
+  transition-timing-function: ease-in-out;
 }
 .fade-leave-active {
   transition: opacity 0.3s;
