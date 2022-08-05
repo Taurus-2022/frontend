@@ -60,13 +60,17 @@ function userSign() {
       <p>它渗透于城市发展中、融合在市井生活里，</p>
       <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
     </div>
-    <div v-show='sign===false' class='signed-container'>
-      <div class='sign-button' @click='userSign'>点击签约</div>
-    </div>
+      <Transition name="fade">
+        <div v-show='sign===false' class='signed-container'>
+          <div class='sign-button' @click='userSign'>点击签名</div>
+        </div>
+      </Transition>
+    <Transition name="fade">
     <div v-show='sign===true' class='signed-container'>
       <p>你已成为第<span> 00000000 </span>位</p>
       <p>支持金牛区创建全国文明典范城市的人！</p>
     </div>
+    </Transition>
   </div>
 </template>
 
@@ -307,6 +311,24 @@ function userSign() {
       top: 58rem;
     }
   }
+}
+
+.fade-enter-active {
+  transition-delay: 0.6s;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-in-out;
+}
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-to,
+.fade-leave-leave {
+  opacity: 1;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 </style>
