@@ -13,10 +13,10 @@ const start = () => {
   <div class='container'>
     <img class='background' src='/src/assets/p4.png' @click="store.firstPageIndex">
     <div class='turntable-container'>
-      <img :class='["turntable", startLottery ? "rotateImages": ""]' src='src/assets/turntable.jpg'/>
+      <img :class='["turntable", startLottery ? "rotateImages": ""]' src='/src/assets/turntable.jpg'/>
     </div>
     <div class='pointer-container'>
-      <img class='pointer' src='src/assets/pointer.jpg' @click='start'/>
+      <img class='pointer' src='/src/assets/pointer.jpg' @click='start'/>
     </div>
   </div>
 </template>
