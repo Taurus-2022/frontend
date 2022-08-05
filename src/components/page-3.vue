@@ -55,7 +55,7 @@ function userSign() {
         </van-swipe-item>
       </van-swipe>
       </div>
-    <div class='sign-text-container'>
+    <div class='slide-container'>
       <p>创建文明典范城市是一场没有终点的幸福接力，</p>
       <p>它渗透于城市发展中、融合在市井生活里，</p>
       <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
@@ -173,7 +173,7 @@ function userSign() {
     text-align: center;
   }
 
-  .sign-text-container {
+  .slide-container {
     min-width: 295.2px;
     width: 82vw;
     font-size: 0.8rem;

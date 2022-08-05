@@ -1,22 +1,30 @@
 <script >
-
+function unmuteVideo () {
+  document.getElementById('media').muted = false
+}
 export default {
   data () {
     return {
       time: false,
-      autoplay: true,
       state: false
-  }
-  },
-  mounted () {
-    // 监听视频是否播放完毕
-    if (!this.state) {
-      document.getElementById('media').addEventListener('ended', () => { //该视频播放是否已结束
-        this.time = !this.time
-        this.state = true
-      }, false)
     }
   },
+  mounted () {
+    if (!this.state) {
+      document.getElementById('media').addEventListener('ended', this.afterVideoPlay, false)
+    }
+    document.getElementById('media').addEventListener('play', unmuteVideo, false)
+  },
+  unmounted() {
+    document.getElementById('media').removeEventListener('ended', this.afterVideoPlay)
+    document.getElementById('media').removeEventListener('play', unmuteVideo)
+  },
+  methods: {
+    afterVideoPlay () {
+      this.time = !this.time
+      this.state = true
+    },
+  }
 
 }
 
@@ -27,11 +35,13 @@ export default {
   <div class='container'>
     <img class='background' src='/src/assets/p2.png' @click="store.nextPageIndex">
     <div class='video-container'>
-      <video id="media" muted controls :autoplay="autoplay" webkit-playsinline playsinline >
-        <source src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4" type="video/mp4">
+      <video
+id="media" muted controls autoplay
+             webkit-playsinline playsinline
+             src='https://bucket.taurus.cd.peanut996.cn/video/v1.mp4'>
       </video>
     </div>
-    <div v-if="time" class='sign-text-container'>
+    <div v-if="time" class='slide-container'>
       <p>向下滑动</p>
     </div>
   </div>
@@ -44,23 +54,30 @@ export default {
   -webkit-overflow-scrolling: touch;
   height: 100vh;
   padding: 0;
+
+  .background {
+    min-height: 100vh;
+    width: 100vw;
+    position: absolute;
+  }
+
   .video-container{
-    display: flex;
-    justify-content: center;
+    width: 90vw;
     position: relative;
-    min-width: 360px;
+    min-width: 324px;
+    height: 11.25rem;
     top: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
     video{
-      width: 20rem;
-      position: relative;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      clip-path: inset(1.5rem 0);
     }
   }
-.background {
-  min-height: 100vh;
-  width: 100vw;
-  position: absolute;
-}
-  .sign-text-container {
+
+  .slide-container {
     min-width: 295.2px;
     width: 82vw;
     font-size: 1.2rem;
@@ -72,6 +89,7 @@ export default {
     transform: translateX(-50%);
     p {
       text-align: center;
+      color: white;
     }
     @media screen and (min-width: 370px) {
       top: 42rem;
