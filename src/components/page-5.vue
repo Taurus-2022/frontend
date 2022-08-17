@@ -1,11 +1,12 @@
 <script >
 import { ref } from 'vue';
-import {Cascader,Button} from 'vant';
+import {Cascader,Button,Divider} from 'vant';
 
 export default {
   components:{
     [Cascader.name]:Cascader,
     [Button.name]:Button,
+    [Divider.name]:Divider,
   },
   setup() {
     const show = ref(false);
@@ -67,8 +68,10 @@ export default {
           @finish="onFinish"
       />
     </van-popup>
-    <van-field v-model="value" label="手机号" placeholder="请输入手机号" />
-    <van-button plain hairline type="success">提交</van-button>
+      <van-divider />
+      <van-field v-model="value" label="手机号" placeholder="请输入手机号" />
+      <van-divider />
+      <van-button class='button-container' plain hairline type="success">提交</van-button>
     </div>
     <div class='slide-container'>
       <p>向下滑动</p>
@@ -91,8 +94,16 @@ export default {
   }
 
   .form-container {
+    width: 92vw;
     position: relative;
     top: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .button-container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .slide-container {
