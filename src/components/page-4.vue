@@ -1,9 +1,14 @@
 <script>
 import turntablePath from '../assets/turntable.jpg'
 import pointerPath from '../assets/pointer.jpg'
+import {Dialog} from "vant";
+
 export default {
   data () {
     return {
+      components: {
+        [Dialog.Component.name]: Dialog.Component,
+      },
       blocks: [{ padding: '13px', imgs: [{
           src: turntablePath,
           width: '100%',
@@ -38,6 +43,14 @@ export default {
     }
   },
   methods: {
+    TipDialog(){
+      Dialog.alert({
+        // title:'标题呀',
+        message:'ababababa'
+      }).then(()=>{
+        console.log('点击了确认')
+      })
+    },
     // 点击抽奖按钮会触发star回调
     startCallback () {
       // 调用抽奖组件的play方法开始游戏
@@ -77,9 +90,9 @@ const store = useStore()
         :default-config="defaultConfig"
         @start="startCallback"
         @end="endCallback"
+        @click='TipDialog'
       />
     </div>
-
   </div>
 </template>
 
