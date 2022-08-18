@@ -1,14 +1,16 @@
-<script >
+<script>
 import { ref } from 'vue';
-import {Cascader,Button,Divider} from 'vant';
+import { Cascader, Button, Divider } from 'vant';
+import { useStore } from '../stores/pageIndex';
 
 export default {
-  components:{
-    [Cascader.name]:Cascader,
-    [Button.name]:Button,
-    [Divider.name]:Divider,
+  components: {
+    [Cascader.name]: Cascader,
+    [Button.name]: Button,
+    [Divider.name]: Divider,
   },
   setup() {
+    const store = useStore();
     const show = ref(false);
     const fieldValue = ref('');
     const cascaderValue = ref('');
@@ -32,6 +34,13 @@ export default {
       fieldValue.value = selectedOptions.map((option) => option.text).join('/');
     };
 
+    const isScrollToBottom = ref(false);
+    const nextPage = () => {
+      if (isScrollToBottom.value) {
+        store.nextPageIndex();
+      }
+    };
+
     return {
       show,
       options,
@@ -39,47 +48,50 @@ export default {
       fieldValue,
       cascaderValue,
       phoneNumber,
+      isScrollToBottom,
+      nextPage,
     };
   },
+  mounted() {
+    // console.log(window['page1']);
+    const onScroll = (event) => {
+      // const currentPosition = window.page1.scrollTop;
+      // console.log('------------',currentPosition);
+      // console.log('------------page1',window.page1.offsetHeight);//667
+      // console.log('------------',window.innerHeight);//667
+      var element = event.target;
+      // console.log(element.scrollHeight);//753
+      // console.log(element.scrollTop);
+      if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
+        console.log('scrolled'); //在页面底端
+        this.isScrollToBottom = true;
+      }
+    };
+    window['page5'].addEventListener('scroll', onScroll);
+  },
 };
-
-
-
 </script>
 
 <template>
-  <div class='container'>
-    <img class='background' src='/src/assets/p2.png' @click="store.nextPageIndex">
-    <div class='form-container'>
-    <van-field
-        v-model="fieldValue"
-        is-link
-        readonly
-        label="街道"
-        placeholder="请选择所在街道"
-        @click="show = true"
-    />
-    <van-popup v-model:show="show" round position="bottom">
-      <van-cascader
-          v-model="cascaderValue"
-          title="请选择所在街道"
-          :options="options"
-          @close="show = false"
-          @finish="onFinish"
-      />
-    </van-popup>
+  <div id="page5" v-touch:swipedown="nextPage" class="container">
+    <img class="background" src="/src/assets/p2.png" @click="store.nextPageIndex" />
+    <div class="form-container">
+      <van-field v-model="fieldValue" is-link readonly label="街道" placeholder="请选择所在街道" @click="show = true" />
+      <van-popup v-model:show="show" round position="bottom">
+        <van-cascader v-model="cascaderValue" title="请选择所在街道" :options="options" @close="show = false" @finish="onFinish" />
+      </van-popup>
       <van-divider />
       <van-field v-model="value" label="手机号" placeholder="请输入手机号" />
       <van-divider />
-      <van-button class='button-container' plain hairline type="success">提交</van-button>
+      <van-button class="button-container" plain hairline type="success">提交</van-button>
     </div>
-    <div class='slide-container'>
+    <div class="slide-container">
       <p>向下滑动</p>
     </div>
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container {
   overflow: auto;
   position: relative;

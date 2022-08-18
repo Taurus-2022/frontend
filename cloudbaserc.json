@@ -11,7 +11,7 @@
           "installCommand": "npm install --prefer-offline --no-audit --progress=false",
           "buildCommand": "npm run build",
           "outputPath": "dist",
-          "ignore": [".git", ".github", "node_modules", "cloudbaserc.js","cloudbaserc.json"],
+          "ignore": [".git", ".github", "node_modules", "cloudbaserc.js", "cloudbaserc.json"],
           "envVariables": {
             "stage": "{{env.STAGE}}"
           }

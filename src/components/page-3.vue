@@ -1,20 +1,16 @@
 <script>
-import {
-  Swipe,
-  SwipeItem,
-} from 'vant';
-
+import { Swipe, SwipeItem } from 'vant';
 
 export default {
   components: {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
   },
-}
+};
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
@@ -29,56 +25,75 @@ const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp10.png',
 ];
 
-const store = useStore()
+const store = useStore();
 
 const sign = ref(false);
 function userSign() {
-  sign.value = true
-
+  sign.value = true;
 }
 
+const isScrollToBottom = ref(false);
+onMounted(() => {
+  const onScroll = (event) => {
+    var element = event.target;
+    if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
+      isScrollToBottom.value = true;
+    }
+  };
+  window['page3'].addEventListener('scroll', onScroll);
+});
+
+const nextPage = () => {
+  if (isScrollToBottom.value) {
+    store.nextPageIndex();
+  }
+};
 </script>
 
 <template>
-  <div class='container'>
-    <img class='background' src='/src/assets/p3.png' @click="store.nextPageIndex">
-    <div class='text-header'>
+  <div id="page3" v-touch:swipedown="nextPage" class="container">
+    <img class="background" src="/src/assets/p3.png" />
+    <div class="text-header">
       <p>创建全国文明典范城市，</p>
       <p>需要每一位市民的参与！</p>
       <p>让我们一起践行</p>
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
-    <div class='swiper-container'>
-      <van-swipe class="my-swipe" style="width: 16rem;" :autoplay="3000" lazy-render indicator-color="white">
+    <div class="swiper-container">
+      <van-swipe class="my-swipe" style="width: 16rem" :autoplay="3000" lazy-render indicator-color="white">
         <van-swipe-item v-for="image in images" :key="image">
           <img :src="image" />
         </van-swipe-item>
       </van-swipe>
-      <div class='arrow-icon-container'>
-        <van-icon name="arrow-left" size="2rem"/>
-        <van-icon name="arrow" size="2rem"/>
+      <div class="arrow-icon-container">
+        <van-icon name="arrow-left" size="2rem" />
+        <van-icon name="arrow" size="2rem" />
       </div>
-      </div>
-    <div class='slide-container'>
+    </div>
+    <div class="slide-container">
       <p>创建文明典范城市是一场没有终点的幸福接力，</p>
       <p>它渗透于城市发展中、融合在市井生活里，</p>
       <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
     </div>
-      <Transition name="fade">
-        <div v-show='sign===false' class='signed-container'>
-          <div class='sign-button' @click='userSign'>点击签名</div>
-        </div>
-      </Transition>
     <Transition name="fade">
-    <div v-show='sign===true' class='signed-container'>
-      <p>你已成为第<span> 00000000 </span>位</p>
-      <p>支持金牛区创建全国文明典范城市的人！</p>
-    </div>
+      <div v-show="sign === false" class="signed-container">
+        <div class="sign-button" @click="userSign">点击签名</div>
+      </div>
+    </Transition>
+    <Transition name="fade">
+      <div v-show="sign === true" class="signed-container">
+        <p>
+          你已成为第
+          <span>00000000</span>
+          位
+        </p>
+        <p>支持金牛区创建全国文明典范城市的人！</p>
+      </div>
     </Transition>
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container {
   min-width: 360px;
   overflow: auto;
@@ -93,7 +108,7 @@ function userSign() {
     position: absolute;
   }
 
-  .text-header{
+  .text-header {
     min-width: 216px;
     width: 60vw;
     font-size: 0.8rem;
@@ -270,9 +285,10 @@ function userSign() {
     p {
       text-align: center;
       span {
-        color:#cb7c39;font-weight: 800;font-size: 1rem;
+        color: #cb7c39;
+        font-weight: 800;
+        font-size: 1rem;
       }
-
     }
     @media screen and (min-width: 370px) {
       top: 60rem;
@@ -344,5 +360,4 @@ function userSign() {
 .fade-leave-to {
   opacity: 0;
 }
-
 </style>

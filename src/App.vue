@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted } from 'vue';
-// import Page2 from './components/page-2.vue';
-// import Page3 from './components/page-3.vue';
-// import Page1 from './components/page-1.vue';
+import Page2 from './components/page-2.vue';
+import Page3 from './components/page-3.vue';
+import Page1 from './components/page-1.vue';
 // import Page4 from './components/page-4.vue';
 import Page5 from './components/page-5.vue';
 
-// import { useStore } from './stores/pageIndex';
-// const store = useStore()
+import { useStore } from './stores/pageIndex';
+const store = useStore();
 onMounted(() => {
   console.log(`the component is now mounted.`);
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -17,7 +17,7 @@ onMounted(() => {
   // We listen to the resize event
   window.addEventListener('resize', () => {
     // We execute the same script as before
-    const vh = window.innerHeight * 0.01
+    const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     setRemUnit();
   });
@@ -38,8 +38,9 @@ onMounted(() => {
   // 将实际的字号除以默认字号
   const sizeScale = userWebsetFontDefaultSize / DEFAULT_FONT_SIZE;
   function setRemUnit() {
-    const font = window.innerWidth >= 700 ? 36 : window.innerWidth >= 600 ? 28 :window.innerWidth >= 500 ? 22 : window.innerWidth >= 390 ? 18 : 16;
-    const rem =  font / sizeScale;
+    const font =
+      window.innerWidth >= 700 ? 36 : window.innerWidth >= 600 ? 28 : window.innerWidth >= 500 ? 22 : window.innerWidth >= 390 ? 18 : 16;
+    const rem = font / sizeScale;
     docEl.style.fontSize = rem + 'px';
   }
 
@@ -48,19 +49,22 @@ onMounted(() => {
 </script>
 
 <template>
-<!--  <Transition name="fade">-->
-<!--    <page1 v-if='store.currentPageIndex == 1'/>-->
-<!--  </Transition>-->
-<!--  <Transition name="fade">-->
-<!--    <page2 v-if='store.currentPageIndex == 2'/>-->
-<!--  </Transition>-->
-<!--  <Transition name="fade">-->
-<!--    <page3 v-if='store.currentPageIndex == 3'/>-->
-<!--  </Transition>-->
-<!--  <Transition name="fade">-->
-<!--    <page4 v-if='store.currentPageIndex == 4'/>-->
-<!--  </Transition>-->
-  <page5/>
+  <Transition name="fade">
+    <page1 v-if="store.currentPageIndex === 1" />
+  </Transition>
+  <Transition name="fade">
+    <page2 v-if="store.currentPageIndex === 2" />
+  </Transition>
+  <Transition name="fade">
+    <page3 v-if="store.currentPageIndex == 3" />
+  </Transition>
+  <Transition name="fade">
+    <page5 v-if="store.currentPageIndex == 4" />
+  </Transition>
+  <!--  <Transition name="fade">-->
+  <!--    <page4 v-if='store.currentPageIndex == 4'/>-->
+  <!--  </Transition>-->
+  <!--  <page2/>-->
 </template>
 
 <style scoped>
@@ -77,7 +81,7 @@ onMounted(() => {
 .fade-leave-leave {
   opacity: 1;
 }
-.fade-enter-from{
+.fade-enter-from {
   opacity: 0.3;
 }
 

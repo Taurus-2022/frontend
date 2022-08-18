@@ -1,53 +1,82 @@
-<script >
-function unmuteVideo () {
-  document.getElementById('media').muted = false
+<script>
+function unmuteVideo() {
+  document.getElementById('media').muted = false;
 }
 export default {
-  data () {
+  data() {
     return {
       time: false,
-      state: false
-    }
+      state: false,
+    };
   },
-  mounted () {
+  mounted() {
     if (!this.state) {
-      document.getElementById('media').addEventListener('ended', this.afterVideoPlay, false)
+      document.getElementById('media').addEventListener('ended', this.afterVideoPlay, false);
     }
-    document.getElementById('media').addEventListener('play', unmuteVideo, false)
+    document.getElementById('media').addEventListener('play', unmuteVideo, false);
   },
   unmounted() {
-    document.getElementById('media').removeEventListener('ended', this.afterVideoPlay)
-    document.getElementById('media').removeEventListener('play', unmuteVideo)
+    document.getElementById('media').removeEventListener('ended', this.afterVideoPlay);
+    document.getElementById('media').removeEventListener('play', unmuteVideo);
   },
   methods: {
-    afterVideoPlay () {
-      this.time = !this.time
-      this.state = true
+    afterVideoPlay() {
+      this.time = !this.time;
+      this.state = true;
     },
-  }
-
-}
-
-
+  },
+};
 </script>
+<script setup>
+import { useStore } from '../stores/pageIndex';
+import { onMounted, ref } from 'vue';
+const store = useStore();
+const isScrollToBottom = ref(false);
+onMounted(() => {
+  // console.log(window.page2);
+  const onScroll = (event) => {
+    // const currentPosition = window['page2'].scrollTop;
+    // console.log('------------',currentPosition);
+    // console.log('------------page2',window.page2.offsetHeight);//667
+    // console.log('------------',window.innerHeight);//667
+    var element = event.target;
+    // console.log(element.scrollHeight);//753
+    // console.log(element.scrollTop);
+    if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
+      console.log('scrolled');
+      isScrollToBottom.value = true;
+    }
+  };
+  window['page2'].addEventListener('scroll', onScroll);
+});
 
+const nextPage = () => {
+  if (isScrollToBottom.value) {
+    store.nextPageIndex();
+  }
+};
+</script>
 <template>
-  <div class='container'>
-    <img class='background' src='/src/assets/p2.png' @click="store.nextPageIndex">
-    <div class='video-container'>
+  <div id="page2" v-touch:swipedown="nextPage" class="container">
+    <img class="background" src="/src/assets/p2.png" />
+    <div class="video-container">
       <video
-id="media" muted controls autoplay
-             webkit-playsinline playsinline
-             src='https://bucket.taurus.cd.peanut996.cn/video/v1.mp4'>
-      </video>
+        id="media"
+        controls
+        autoplay
+        muted
+        webkit-playsinline
+        playsinline
+        src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"
+      ></video>
     </div>
-    <div v-if="time" class='slide-container'>
+    <div v-if="time" class="slide-container">
       <p>向下滑动</p>
     </div>
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container {
   overflow: auto;
   position: relative;
@@ -61,7 +90,7 @@ id="media" muted controls autoplay
     position: absolute;
   }
 
-  .video-container{
+  .video-container {
     width: 90vw;
     position: relative;
     min-width: 324px;
@@ -69,9 +98,9 @@ id="media" muted controls autoplay
     top: 15rem;
     left: 50%;
     transform: translateX(-50%);
-    video{
-      width:100%;
-      height:100%;
+    video {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       clip-path: inset(1.5rem 0);
     }
