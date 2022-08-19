@@ -56,10 +56,10 @@ onMounted(() => {
     <page5 v-if="store.currentPageIndex === 2" />
   </Transition>
   <Transition name="fade">
-    <page2 v-if="store.currentPageIndex == 3" />
+    <page2 v-if="store.currentPageIndex === 3" />
   </Transition>
   <Transition name="fade">
-    <page3 v-if="store.currentPageIndex == 4" />
+    <page3 v-if="store.currentPageIndex === 4" />
   </Transition>
   <!--  <Transition name="fade">-->
   <!--    <page4 v-if='store.currentPageIndex == 4'/>-->

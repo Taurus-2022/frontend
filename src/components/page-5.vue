@@ -36,7 +36,7 @@ export default {
 
     const isScrollToBottom = ref(false);
     const nextPage = () => {
-      if (isScrollToBottom.value) {
+      if (isScrollToBottom.value || window.innerHeight >= window.page5.offsetHeight) {
         store.nextPageIndex();
       }
     };

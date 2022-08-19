@@ -23,8 +23,7 @@ onMounted(() => {
 });
 
 const nextPage = () => {
-  // console.log(event);
-  if (isScrollToBottom.value) {
+  if (isScrollToBottom.value || window.innerHeight >= window.page1.offsetHeight) {
     store.nextPageIndex();
   }
 };

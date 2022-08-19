@@ -44,8 +44,8 @@ onMounted(() => {
 });
 
 const nextPage = () => {
-  if (isScrollToBottom.value) {
-    store.nextPageIndex();
+  if (isScrollToBottom.value || window.innerHeight >= window.page3.offsetHeight) {
+    store.firstPageIndex();
   }
 };
 </script>

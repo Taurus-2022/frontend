@@ -10,13 +10,13 @@ export const useStore = defineStore({
   },
   actions: {
     nextPageIndex() {
-      if (this.pageIndex == 4) {
+      if (this.pageIndex === 4) {
         this.pageIndex;
       }
       this.pageIndex++;
     },
     previousPageIndex() {
-      if (this.pageIndex == 1) {
+      if (this.pageIndex === 1) {
         this.pageIndex;
       }
       this.pageIndex--;
