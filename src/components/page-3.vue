@@ -40,7 +40,7 @@ const nextPage = () => {
 </script>
 
 <template>
-  <div v-touch:swipeup="nextPage" class="container">
+  <div class="container">
     <img class="background" src="/src/assets/p3.png" />
     <div class="text-header">
       <p>创建全国文明典范城市，</p>
@@ -70,7 +70,7 @@ const nextPage = () => {
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="sign === true" class="signed-container">
+      <div v-show="sign === true" v-touch:swipeup="nextPage" class="signed-container" >
         <p>
           你已成为第
           <span>00000000</span>
