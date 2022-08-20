@@ -59,16 +59,16 @@ onMounted(() => {
 
 <template>
   <Transition name="fade">
-    <page1 v-if="store.currentPageIndex === 1" />
+    <page1 v-show="store.currentPageIndex === 1" />
   </Transition>
   <Transition name="fade">
-    <page5 v-if="store.currentPageIndex === 2" />
+    <page5 v-show="store.currentPageIndex === 2" />
   </Transition>
   <Transition name="fade">
-    <page2 v-if="store.currentPageIndex === 3" />
+    <page2 v-show="store.currentPageIndex === 3" />
   </Transition>
   <Transition name="fade">
-    <page3 v-if="store.currentPageIndex === 4" />
+    <page3 v-show="store.currentPageIndex === 4" />
   </Transition>
   <!--  <page5 />-->
   <pageVideo />
