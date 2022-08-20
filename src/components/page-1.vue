@@ -3,8 +3,14 @@ import { useStore } from '../stores/pageIndex';
 import { onMounted, ref } from 'vue';
 const store = useStore();
 const isScrollToBottom = ref(false);
-
-onMounted(() => {
+const bottom = ref(null);
+onMounted(async () => {
+  // console.log(window.img1.offsetHeight);
+  // console.log(window.img1.scrollHeight);
+  // console.log(window.img1);
+  // console.log(img.value.$el.clientHeight);
+  // console.log(window.innerHeight);
+  // console.log(window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
   // console.log(window['page1']);
   // const onScroll = (event) => {
   //   // const currentPosition = window.page1.scrollTop;
@@ -20,6 +26,16 @@ onMounted(() => {
   //   }
   // };
   // window['page1'].addEventListener('scroll', onScroll);
+  const afterLoaded = () => {
+    console.log(window.img1.height);
+    console.log(window.img1.offsetHeight);
+    console.log(window.img1.naturalWidth);
+    console.log(window.img1.naturalHeight);
+    console.log(window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
+    console.log(window.innerHeight - window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
+    bottom.value = window.innerHeight - window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth
+  }
+  document.addEventListener("DOMContentLoaded", afterLoaded);
 });
 
 const nextPage = () => {
@@ -30,8 +46,9 @@ const nextPage = () => {
 </script>
 
 <template>
-  <div id="page1" v-touch:swipedown="nextPage" class="container">
-    <img class="background" src="/src/assets/p1.png" />
+  <div id="page1" class="container">
+    <img id='img1' ref="img" class="background" src="/src/assets/p1.png"/>
+    <div v-touch:swipeup="nextPage" class="touch" :style="{'bottom': bottom +'px', 'height': (0-bottom) + 'px'}"></div>
   </div>
 </template>
 
@@ -47,5 +64,11 @@ const nextPage = () => {
     width: 100vw;
     position: absolute;
   }
+  .touch {
+    position: absolute;
+    width: 100%;
+    background: #2c3e50;
+  }
 }
+
 </style>
