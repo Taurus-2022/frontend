@@ -1,54 +1,22 @@
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import { onMounted, ref } from 'vue';
 const store = useStore();
-const isScrollToBottom = ref(false);
-const bottom = ref(null);
-onMounted(async () => {
-  // console.log(window.img1.offsetHeight);
-  // console.log(window.img1.scrollHeight);
-  // console.log(window.img1);
-  // console.log(img.value.$el.clientHeight);
-  // console.log(window.innerHeight);
-  // console.log(window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
-  // console.log(window['page1']);
-  // const onScroll = (event) => {
-  //   // const currentPosition = window.page1.scrollTop;
-  //   // console.log('------------',currentPosition);
-  //   // console.log('------------page1',window.page1.offsetHeight);//667
-  //   // console.log('------------',window.innerHeight);//667
-  //   var element = event.target;
-  //   // console.log(element.scrollHeight);//753
-  //   // console.log(element.scrollTop);
-  //   if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
-  //     console.log('scrolled'); //在页面底端
-  //     isScrollToBottom.value = true;
-  //   }
-  // };
-  // window['page1'].addEventListener('scroll', onScroll);
-  const afterLoaded = () => {
-    console.log(window.img1.height);
-    console.log(window.img1.offsetHeight);
-    console.log(window.img1.naturalWidth);
-    console.log(window.img1.naturalHeight);
-    console.log(window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
-    console.log(window.innerHeight - window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth);
-    bottom.value = window.innerHeight - window.img1.naturalHeight*window.innerWidth/window.img1.naturalWidth
-  }
-  document.addEventListener("DOMContentLoaded", afterLoaded);
-});
 
 const nextPage = () => {
-  if (isScrollToBottom.value || window.innerHeight >= window.page1.offsetHeight) {
-    store.nextPageIndex();
-  }
+  store.nextPageIndex();
 };
 </script>
 
 <template>
   <div id="page1" v-touch:swipeup="nextPage" class="container">
-    <img id='img1' ref="img" class="background" src="/src/assets/p1.png"/>
-    <div class="touch" :style="{'bottom': bottom +'px', 'height': (0-bottom) + 'px'}"></div>
+    <img class="logo" src="/src/assets/p1-logo.png" />
+    <img class="title" src="/src/assets/p1-title-cloud.png" />
+    <img class="bird" src="/src/assets/p1-bird.png" />
+    <img class="background" src="/src/assets/p1-background.png" />
+    <div class="slide-container">
+      <p>向下滑动</p>
+      <van-icon class="down" name="arrow-down" />
+    </div>
   </div>
 </template>
 
@@ -58,17 +26,91 @@ const nextPage = () => {
   position: relative;
   -webkit-overflow-scrolling: touch;
   height: 100vh;
+  width: 100vw;
   padding: 0;
-  .background {
-    min-height: 100vh;
-    width: 100vw;
-    position: absolute;
+  background: rgb(7, 153, 201);
+  background: linear-gradient(0deg, rgba(7, 153, 201, 1) 0%, rgba(204, 219, 245, 1) 65%, rgba(204, 219, 245, 1) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  .logo {
+    margin-top: 10%;
+    width: 25%;
+    display: block;
   }
-  .touch {
+  .title {
+    width: 85%;
+    display: block;
+  }
+  .background {
+    width: 100vw;
+  }
+  .bird {
+    display: block;
     position: absolute;
-    width: 100%;
-    background: #2c3e50;
+    width: 20%;
+    right: 12%;
+    top: 45%;
+  }
+}
+.slide-container {
+  min-width: 295.2px;
+  width: 82vw;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 400px) {
+    top: 50%;
+  }
+  @media screen and (min-width: 410px) {
+    top: 55%;
+  }
+  @media screen and (min-width: 450px) {
+    top: 55%;
+  }
+  @media screen and (min-width: 600px) {
+    font-size: 1.1rem;
+  }
+  @media screen and (min-width: 700px) {
+    font-size: 1rem;
+  }
+  @media screen and (min-width: 800px) {
+    top: 55%;
   }
 }
 
+.down {
+  animation: downMove 2s infinite;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  font-size: 1.5rem;
+}
+
+@keyframes downMove {
+  from {
+    top: 0;
+    opacity: 0.4;
+  }
+  to {
+    top: 0.8rem;
+    opacity: 0.4;
+  }
+  75% {
+    opacity: 0.7;
+  }
+}
 </style>

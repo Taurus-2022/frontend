@@ -10,7 +10,7 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
@@ -32,26 +32,15 @@ function userSign() {
   sign.value = true;
 }
 
-const isScrollToBottom = ref(false);
-onMounted(() => {
-  const onScroll = (event) => {
-    var element = event.target;
-    if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
-      isScrollToBottom.value = true;
-    }
-  };
-  window['page3'].addEventListener('scroll', onScroll);
-});
-
 const nextPage = () => {
-  if (isScrollToBottom.value || window.innerHeight >= window.page3.offsetHeight) {
+  if (sign.value) {
     store.firstPageIndex();
   }
 };
 </script>
 
 <template>
-  <div id="page3" v-touch:swipedown="nextPage" class="container">
+  <div v-touch:swipeup="nextPage" class="container">
     <img class="background" src="/src/assets/p3.png" />
     <div class="text-header">
       <p>创建全国文明典范城市，</p>

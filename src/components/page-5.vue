@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Cascader, Button, Divider } from 'vant';
 import { useStore } from '../stores/pageIndex';
+import { streetInfo } from '../assets/streetInfo';
 
 export default {
   components: {
@@ -16,29 +17,18 @@ export default {
     const cascaderValue = ref('');
     const phoneNumber = ref('');
     // 选项列表，children 代表子选项，支持多级嵌套
-    const options = [
-      {
-        text: '浙江省',
-        value: '330000',
-        children: [{ text: '杭州市', value: '330100' }],
-      },
-      {
-        text: '江苏省',
-        value: '320000',
-        children: [{ text: '南京市', value: '320100' }],
-      },
-    ];
+    const options = streetInfo;
     // 全部选项选择完毕后，会触发 finish 事件
     const onFinish = ({ selectedOptions }) => {
       show.value = false;
       fieldValue.value = selectedOptions.map((option) => option.text).join('/');
     };
 
-    const isScrollToBottom = ref(false);
-    const nextPage = () => {
-      if (isScrollToBottom.value || window.innerHeight >= window.page5.offsetHeight) {
-        store.nextPageIndex();
-      }
+    const submit = () => {
+      store.nextPageIndex();
+      setTimeout(() => {
+        document.getElementById('media').play();
+      }, 1000);
     };
 
     return {
@@ -48,33 +38,14 @@ export default {
       fieldValue,
       cascaderValue,
       phoneNumber,
-      isScrollToBottom,
-      nextPage,
+      submit,
     };
-  },
-  mounted() {
-    // console.log(window['page1']);
-    const onScroll = (event) => {
-      // const currentPosition = window.page1.scrollTop;
-      // console.log('------------',currentPosition);
-      // console.log('------------page1',window.page1.offsetHeight);//667
-      // console.log('------------',window.innerHeight);//667
-      var element = event.target;
-      // console.log(element.scrollHeight);//753
-      // console.log(element.scrollTop);
-      if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
-        console.log('scrolled'); //在页面底端
-        this.isScrollToBottom = true;
-      }
-    };
-    window['page5'].addEventListener('scroll', onScroll);
   },
 };
 </script>
 
 <template>
-  <div id="page5" v-touch:swipedown="nextPage" class="container">
-    <img class="background" src="/src/assets/p2.png" @click="store.nextPageIndex" />
+  <div id="page5" class="container">
     <div class="form-container">
       <van-field v-model="fieldValue" is-link readonly label="街道" placeholder="请选择所在街道" @click="show = true" />
       <van-popup v-model:show="show" round position="bottom">
@@ -83,11 +54,9 @@ export default {
       <van-divider />
       <van-field v-model="value" label="手机号" placeholder="请输入手机号" />
       <van-divider />
-      <van-button class="button-container" plain hairline type="success">提交</van-button>
+      <van-button @click="submit">提 交</van-button>
     </div>
-    <div class="slide-container">
-      <p>向下滑动</p>
-    </div>
+    <img class="background" src="/src/assets/p5-background.png" />
   </div>
 </template>
 
@@ -97,85 +66,33 @@ export default {
   position: relative;
   -webkit-overflow-scrolling: touch;
   height: 100vh;
+  width: 100vw;
   padding: 0;
+  background: rgb(91, 172, 199);
+  background: linear-gradient(0deg, rgba(91, 172, 199, 1) 0%, rgba(204, 219, 245, 1) 50%, rgba(204, 219, 245, 1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
   .background {
-    min-height: 100vh;
     width: 100vw;
-    position: absolute;
   }
-
   .form-container {
-    width: 92vw;
-    position: relative;
-    top: 15rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
   .button-container {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
-  .slide-container {
-    min-width: 295.2px;
-    width: 82vw;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    position: absolute;
-    text-align: center;
-    top: 40rem;
-    left: 50%;
-    transform: translateX(-50%);
-    p {
-      text-align: center;
-      color: white;
-    }
-    @media screen and (min-width: 370px) {
-      top: 42rem;
-    }
-    @media screen and (min-width: 390px) {
-      top: 37.5rem;
-    }
-    @media screen and (min-width: 400px) {
-      top: 39rem;
-    }
-    @media screen and (min-width: 410px) {
-      top: 41rem;
-    }
-    @media screen and (min-width: 450px) {
-      top: 45rem;
-    }
-    @media screen and (min-width: 470px) {
-      top: 48rem;
-    }
-    @media screen and (min-width: 500px) {
-      top: 41rem;
-    }
-    @media screen and (min-width: 530px) {
-      top: 45rem;
-    }
-    @media screen and (min-width: 550px) {
-      top: 46rem;
-    }
-    @media screen and (min-width: 580px) {
-      top: 50rem;
-    }
-    @media screen and (min-width: 600px) {
-      font-size: 1.1rem;
-      top: 38rem;
-    }
-    @media screen and (min-width: 700px) {
-      font-size: 1rem;
-      top: 40rem;
-    }
-    @media screen and (min-width: 750px) {
-      top: 38rem;
-    }
-    @media screen and (min-width: 800px) {
-      top: 40rem;
-    }
+  ::v-deep .van-button.van-button--default.van-button--normal {
+    //background: red;
+  }
+  ::v-deep .van-tabs__line {
+    background: #c16545;
   }
 }
 </style>
