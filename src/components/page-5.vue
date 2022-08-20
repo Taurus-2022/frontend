@@ -30,11 +30,13 @@ const onFinish = ({ selectedOptions }) => {
 };
 
 const submit = () => {
+  Dialog.setDefaultOptions({
+    width: '70vw',
+    theme: 'round-button',
+  });
   if (!fieldValue.value || !phoneNumber.value) {
     Dialog.alert({
       message: `请输入${!fieldValue.value && !phoneNumber.value ? '街道信息及手机号码' : !fieldValue.value ? '街道信息' : '手机号码'}`,
-      width: '50vw',
-      theme: 'round-button',
     }).then(() => {});
     return;
   }
@@ -43,8 +45,6 @@ const submit = () => {
   if (isValidNumber && !isValidNumber(phoneNumber.value, 'cn')) {
     Dialog.alert({
       message: '手机号码格式错误，请输入正确手机号',
-      width: '50vw',
-      theme: 'round-button',
     }).then(() => {});
     return;
   }

@@ -58,20 +58,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <Transition name="fade">
-      <page1 v-if="store.currentPageIndex === 1" />
-    </Transition>
-    <Transition name="fade">
-      <page5 v-if="store.currentPageIndex === 2" />
-    </Transition>
-    <Transition name="fade">
-      <page2 v-if="store.currentPageIndex === 3" />
-    </Transition>
-    <Transition name="fade">
-      <page3 v-if="store.currentPageIndex === 4" />
-    </Transition>
-<!--  <page5 />-->
-    <pageVideo />
+  <Transition name="fade">
+    <page1 v-if="store.currentPageIndex === 1" />
+  </Transition>
+  <Transition name="fade">
+    <page5 v-if="store.currentPageIndex === 2" />
+  </Transition>
+  <Transition name="fade">
+    <page2 v-if="store.currentPageIndex === 3" />
+  </Transition>
+  <Transition name="fade">
+    <page3 v-if="store.currentPageIndex === 4" />
+  </Transition>
+  <!--  <page5 />-->
+  <pageVideo />
 </template>
 
 <style scoped>
