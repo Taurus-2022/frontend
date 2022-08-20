@@ -46,9 +46,9 @@ const nextPage = () => {
 </script>
 
 <template>
-  <div id="page1" class="container">
+  <div id="page1" v-touch:swipeup="nextPage" class="container">
     <img id='img1' ref="img" class="background" src="/src/assets/p1.png"/>
-    <div v-touch:swipeup="nextPage" class="touch" :style="{'bottom': bottom +'px', 'height': (0-bottom) + 'px'}"></div>
+    <div class="touch" :style="{'bottom': bottom +'px', 'height': (0-bottom) + 'px'}"></div>
   </div>
 </template>
 
