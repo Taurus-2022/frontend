@@ -66,7 +66,7 @@ const submit = () => {
       <van-divider />
       <van-field v-model="phoneNumber" label="手机号码" placeholder="请输入手机号" />
       <van-divider />
-      <van-button @click="submit">提 交</van-button>
+      <van-button round block type="primary" native-type="submit" @click="submit">提 交</van-button>
     </div>
     <img class="background" src="/src/assets/p5-background.png" />
   </div>
