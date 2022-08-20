@@ -46,6 +46,10 @@ onMounted(() => {
   }
 
   setRemUnit();
+  document.addEventListener("WeixinJSBridgeReady", function (){
+    document.getElementById('media').play();
+    document.getElementById('media').pause();
+  }, false)
 });
 </script>
 
