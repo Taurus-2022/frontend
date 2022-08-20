@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import Page2 from './components/page-2.vue';
 import pageVideo from './components/pageVideo.vue';
 import Page3 from './components/page-3.vue';
@@ -9,8 +9,11 @@ import Page5 from './components/page-5.vue';
 
 import { useStore } from './stores/pageIndex';
 const store = useStore();
+const currentRate = ref(0);
+const completedLoading = ref(false);
+const text = computed(() => '页面加载 ' + currentRate.value.toFixed(0) + '%');
 onMounted(() => {
-  console.log(`the component is now mounted.`);
+  // console.log(`the component is now mounted.`);
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
   const vh = window.innerHeight * 0.01;
   // Then we set the value in the --vh custom property to the root of the document
@@ -44,7 +47,21 @@ onMounted(() => {
     const rem = font / sizeScale;
     docEl.style.fontSize = rem + 'px';
   }
-
+  function imgLoad(callback) {
+    const images = document.getElementsByTagName('img');
+    const timer = setInterval(() => {
+      const completedImages = Array.from(images, (image) => image.complete).filter((complete) => complete === true).length;
+      currentRate.value = completedImages / images.length;
+      if (images.length === completedImages) {
+        callback();
+        clearInterval(timer);
+      }
+    }, 300);
+  }
+  imgLoad(() => {
+    console.log('加载完毕');
+    completedLoading.value = true;
+  });
   setRemUnit();
   document.addEventListener(
     'WeixinJSBridgeReady',
@@ -58,23 +75,33 @@ onMounted(() => {
 </script>
 
 <template>
+  <div v-if="!completedLoading" class="loadingContainer">
+    <van-circle v-if="!completedLoading" v-model:current-rate="currentRate" :rate="100" :speed="100" color="#4e8ea0" :text="text" />
+  </div>
   <Transition name="fade">
-    <page1 v-show="store.currentPageIndex === 1" />
+    <page1 v-show="completedLoading && store.currentPageIndex === 1" />
   </Transition>
   <Transition name="fade">
-    <page5 v-show="store.currentPageIndex === 2" />
+    <page5 v-show="completedLoading && store.currentPageIndex === 2" />
   </Transition>
   <Transition name="fade">
-    <page2 v-show="store.currentPageIndex === 3" />
+    <page2 v-show="completedLoading && store.currentPageIndex === 3" />
   </Transition>
   <Transition name="fade">
-    <page3 v-show="store.currentPageIndex === 4" />
+    <page3 v-show="completedLoading && store.currentPageIndex === 4" />
   </Transition>
   <!--  <page5 />-->
   <pageVideo />
 </template>
 
 <style scoped>
+.loadingContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .fade-enter-active {
   transition-delay: 0.4s;
   transition-property: opacity;
