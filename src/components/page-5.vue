@@ -59,12 +59,21 @@ const submit = () => {
 <template>
   <div id="page5" class="container">
     <div class="form-container">
-      <van-field v-model="fieldValue" is-link readonly label="街道" placeholder="请选择所在街道" @click="show = true" />
+      <van-field
+        v-model="fieldValue"
+        label-width="3rem"
+        colon
+        is-link
+        readonly
+        label="街道"
+        placeholder="请选择所在街道"
+        @click="show = true"
+      />
       <van-popup v-model:show="show" round position="bottom">
         <van-cascader v-model="cascaderValue" title="请选择所在街道" :options="options" @close="show = false" @finish="onFinish" />
       </van-popup>
       <van-divider />
-      <van-field v-model="phoneNumber" label="手机号码" placeholder="请输入手机号" />
+      <van-field v-model="phoneNumber" label-width="3.5rem" colon label="手机号码" clickable placeholder="请输入手机号" />
       <van-divider />
       <van-button round block type="primary" native-type="submit" @click="submit">提 交</van-button>
     </div>
