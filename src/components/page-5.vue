@@ -59,9 +59,11 @@ const submit = () => {
 <template>
   <div id="page5" class="container">
     <div class="form-container">
+      <van-field v-model="phoneNumber" required colon label="手机号码" autofocus clickable placeholder="请输入手机号" />
+      <van-divider />
       <van-field
         v-model="fieldValue"
-        label-width="3rem"
+        required
         colon
         is-link
         readonly
@@ -73,9 +75,7 @@ const submit = () => {
         <van-cascader v-model="cascaderValue" title="请选择所在街道" :options="options" @close="show = false" @finish="onFinish" />
       </van-popup>
       <van-divider />
-      <van-field v-model="phoneNumber" label-width="3.5rem" colon label="手机号码" clickable placeholder="请输入手机号" />
-      <van-divider />
-      <van-button round block type="primary" native-type="submit" @click="submit">提 交</van-button>
+      <van-button round block type="primary" color="#4e8ea0" native-type="submit" @click="submit">提 交</van-button>
     </div>
     <img class="background" src="/src/assets/p5-background.png" />
   </div>
@@ -97,9 +97,11 @@ const submit = () => {
   align-items: center;
 
   .background {
+    z-index: 1;
     width: 100vw;
   }
   .form-container {
+    z-index: 4;
     margin-top: 40%;
     display: flex;
     flex-direction: column;

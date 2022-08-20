@@ -61,6 +61,7 @@ onMounted(() => {
   imgLoad(() => {
     console.log('加载完毕');
     completedLoading.value = true;
+    currentRate.value = 1;
   });
   setRemUnit();
   document.addEventListener(
