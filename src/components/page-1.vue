@@ -6,20 +6,20 @@ const isScrollToBottom = ref(false);
 
 onMounted(() => {
   // console.log(window['page1']);
-  const onScroll = (event) => {
-    // const currentPosition = window.page1.scrollTop;
-    // console.log('------------',currentPosition);
-    // console.log('------------page1',window.page1.offsetHeight);//667
-    // console.log('------------',window.innerHeight);//667
-    var element = event.target;
-    // console.log(element.scrollHeight);//753
-    // console.log(element.scrollTop);
-    if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
-      console.log('scrolled'); //在页面底端
-      isScrollToBottom.value = true;
-    }
-  };
-  window['page1'].addEventListener('scroll', onScroll);
+  // const onScroll = (event) => {
+  //   // const currentPosition = window.page1.scrollTop;
+  //   // console.log('------------',currentPosition);
+  //   // console.log('------------page1',window.page1.offsetHeight);//667
+  //   // console.log('------------',window.innerHeight);//667
+  //   var element = event.target;
+  //   // console.log(element.scrollHeight);//753
+  //   // console.log(element.scrollTop);
+  //   if (element.scrollHeight <= element.scrollTop + element.offsetHeight) {
+  //     console.log('scrolled'); //在页面底端
+  //     isScrollToBottom.value = true;
+  //   }
+  // };
+  // window['page1'].addEventListener('scroll', onScroll);
 });
 
 const nextPage = () => {
