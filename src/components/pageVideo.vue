@@ -6,11 +6,17 @@ const store = useStore();
 <template>
   <div
     class="video-container"
-    :style="{ 'opacity': store.currentPageIndex === 3 ? '1' : '0', width: store.currentPageIndex === 3 ? '90vw' : '0' }"
+    :style="{ opacity: store.currentPageIndex === 3 ? '1' : '0', width: store.currentPageIndex === 3 ? '90vw' : '0' }"
   >
     <video
-id="media" controls muted webkit-playsinline autoplay playsinline src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"
-           :style="{ 'opacity': store.currentPageIndex === 3 ? '1' : '0', width: store.currentPageIndex === 3 ? '100%' : '0' }"
+      id="media"
+      controls
+      muted
+      webkit-playsinline
+      autoplay
+      playsinline
+      src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"
+      :style="{ opacity: store.currentPageIndex === 3 ? '1' : '0', width: store.currentPageIndex === 3 ? '100%' : '0' }"
     ></video>
   </div>
 </template>

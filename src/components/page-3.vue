@@ -70,7 +70,7 @@ const nextPage = () => {
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="sign === true" v-touch:swipeup="nextPage" class="signed-container" >
+      <div v-show="sign === true" v-touch:swipeup="nextPage" class="signed-container">
         <p>
           你已成为第
           <span>00000000</span>

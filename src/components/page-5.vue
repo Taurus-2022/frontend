@@ -1,8 +1,5 @@
 <script>
-import { ref } from 'vue';
 import { Cascader, Button, Divider } from 'vant';
-import { useStore } from '../stores/pageIndex';
-import { streetInfo } from '../assets/streetInfo';
 
 export default {
   components: {
@@ -10,37 +7,52 @@ export default {
     [Button.name]: Button,
     [Divider.name]: Divider,
   },
-  setup() {
-    const store = useStore();
-    const show = ref(false);
-    const fieldValue = ref('');
-    const cascaderValue = ref('');
-    const phoneNumber = ref('');
-    // 选项列表，children 代表子选项，支持多级嵌套
-    const options = streetInfo;
-    // 全部选项选择完毕后，会触发 finish 事件
-    const onFinish = ({ selectedOptions }) => {
-      show.value = false;
-      fieldValue.value = selectedOptions.map((option) => option.text).join('/');
-    };
+};
+</script>
+<script setup>
+import { ref } from 'vue';
+import { useStore } from '../stores/pageIndex';
+import { streetInfo } from '../assets/streetInfo';
 
-    const submit = () => {
-      store.nextPageIndex();
-      setTimeout(() => {
-        document.getElementById('media').play();
-      }, 1000);
-    };
+import 'intl-tel-input/build/js/utils';
+import { Dialog } from 'vant';
+const store = useStore();
+const show = ref(false);
+const fieldValue = ref('');
+const cascaderValue = ref('');
+const phoneNumber = ref('');
+// 选项列表，children 代表子选项，支持多级嵌套
+const options = streetInfo;
+// 全部选项选择完毕后，会触发 finish 事件
+const onFinish = ({ selectedOptions }) => {
+  show.value = false;
+  fieldValue.value = selectedOptions.map((option) => option.text).join('/');
+};
 
-    return {
-      show,
-      options,
-      onFinish,
-      fieldValue,
-      cascaderValue,
-      phoneNumber,
-      submit,
-    };
-  },
+const submit = () => {
+  if (!fieldValue.value || !phoneNumber.value) {
+    Dialog.alert({
+      message: `请输入${!fieldValue.value && !phoneNumber.value ? '街道信息及手机号码' : !fieldValue.value ? '街道信息' : '手机号码'}`,
+      width: '50vw',
+      theme: 'round-button',
+    }).then(() => {});
+    return;
+  }
+
+  const { isValidNumber } = window.intlTelInputUtils;
+  if (isValidNumber && !isValidNumber(phoneNumber.value, 'cn')) {
+    Dialog.alert({
+      message: '手机号码格式错误，请输入正确手机号',
+      width: '50vw',
+      theme: 'round-button',
+    }).then(() => {});
+    return;
+  }
+
+  store.nextPageIndex();
+  setTimeout(() => {
+    document.getElementById('media').play();
+  }, 1000);
 };
 </script>
 
@@ -52,7 +64,7 @@ export default {
         <van-cascader v-model="cascaderValue" title="请选择所在街道" :options="options" @close="show = false" @finish="onFinish" />
       </van-popup>
       <van-divider />
-      <van-field v-model="value" label="手机号" placeholder="请输入手机号" />
+      <van-field v-model="phoneNumber" label="手机号码" placeholder="请输入手机号" />
       <van-divider />
       <van-button @click="submit">提 交</van-button>
     </div>
@@ -88,10 +100,10 @@ export default {
   .button-container {
   }
 
-  ::v-deep .van-button.van-button--default.van-button--normal {
+  :deep(.van-button.van-button--default.van-button--normal) {
     //background: red;
   }
-  ::v-deep .van-tabs__line {
+  :deep(.van-tabs__line) {
     background: #c16545;
   }
 }
