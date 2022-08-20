@@ -8,7 +8,7 @@ const store = useStore();
     class="video-container"
     :style="{ visibility: store.currentPageIndex === 3 ? 'visible' : 'hidden', width: store.currentPageIndex === 3 ? '90vw' : '0' }"
   >
-    <video id="media" controls muted webkit-playsinline playsinline src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"></video>
+    <video id="media" controls muted webkit-playsinline autoplay playsinline src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"></video>
   </div>
 </template>
 
