@@ -36,8 +36,8 @@ const nextPage = () => {
     <img :class="['text', 'page-png']" src="/src/assets/p2-text.png" />
     <img :class="['train', 'page-png']" src="/src/assets/p2-train.png" />
     <div v-if="time" class="slide-container">
-      <p>向下滑动</p>
-      <van-icon class="down" name="arrow-down" />
+      <p>向上滑动</p>
+      <van-icon class="down" name="arrow-up" />
     </div>
   </div>
 </template>
