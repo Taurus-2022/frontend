@@ -15,7 +15,7 @@ const store = useStore();
       webkit-playsinline
       autoplay
       playsinline
-      src="https://bucket.taurus.cd.peanut996.cn/video/v1.mp4"
+      src="https://bucket.taurus.cd.peanut996.cn/video/v2.mp4"
       :style="{ opacity: store.currentPageIndex === 3 ? '1' : '0', width: store.currentPageIndex === 3 ? '100%' : '0' }"
     ></video>
   </div>
