@@ -8,7 +8,6 @@ import Page1 from './components/page-1.vue';
 import Page5 from './components/page-5.vue';
 
 import { useStore } from './stores/pageIndex';
-import pageSwiper from './components/pageSwiper.vue';
 const store = useStore();
 const currentRate = ref(0);
 const completedLoading = ref(false);
@@ -52,7 +51,7 @@ onMounted(() => {
     const images = document.getElementsByClassName('page-png');
     const timer = setInterval(() => {
       const completedImages = Array.from(images, (image) => image.complete).filter((complete) => complete === true).length;
-      currentRate.value = Math.floor(completedImages / images.length * 100);
+      currentRate.value = Math.floor((completedImages / images.length) * 100);
       if (images.length === completedImages) {
         callback();
         clearInterval(timer);
@@ -90,9 +89,9 @@ onMounted(() => {
     <page2 v-show="completedLoading && store.currentPageIndex === 3" />
   </Transition>
   <Transition name="fade">
-    <page3 v-if="completedLoading && store.currentPageIndex === 4" />
+    <page3 v-show="completedLoading && store.currentPageIndex === 4" />
   </Transition>
-<!--    <page3 />-->
+  <!--    <page3 />-->
   <pageVideo />
 </template>
 

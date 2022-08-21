@@ -61,16 +61,7 @@ const submit = () => {
     <div class="form-container">
       <van-field v-model="phoneNumber" required colon label="手机号码" autofocus clickable placeholder="请输入手机号" />
       <van-divider />
-      <van-field
-        v-model="fieldValue"
-        required
-        colon
-        is-link
-        readonly
-        label="街道"
-        placeholder="请选择所在街道"
-        @click="show = true"
-      />
+      <van-field v-model="fieldValue" required colon is-link readonly label="街道" placeholder="请选择所在街道" @click="show = true" />
       <van-popup v-model:show="show" round position="bottom">
         <van-cascader v-model="cascaderValue" title="请选择所在街道" :options="options" @close="show = false" @finish="onFinish" />
       </van-popup>

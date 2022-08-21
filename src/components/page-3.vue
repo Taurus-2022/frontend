@@ -1,23 +1,16 @@
 <script>
 import { Swipe, SwipeItem } from 'vant';
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 export default {
   components: {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
-    Swiper,
-    SwiperSlide,
   },
 };
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import { onMounted, ref } from 'vue';
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { ref } from 'vue';
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
   'https://bucket.taurus.cd.peanut996.cn/img/sp2.png',
@@ -36,14 +29,6 @@ const sign = ref(false);
 function userSign() {
   sign.value = true;
 }
-// const mySwiper = ref(null);
-// const onSwiper = (swiper) => {
-//   mySwiper.value = swiper;
-// }
-onMounted(() => {
-  // console.log(mySwiper);
-  // mySwiper.value.autoplay.start()
-})
 </script>
 
 <template>
@@ -55,56 +40,7 @@ onMounted(() => {
       <p>让我们一起践行</p>
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
-<!--    <swiper-->
-<!--      v-if="store.currentPageIndex === 4"-->
-<!--      :space-between="0"-->
-<!--      :style="{-->
-<!--      '&#45;&#45;swiper-navigation-color': '#fff',-->
-<!--      '&#45;&#45;swiper-pagination-color': '#fff',-->
-<!--      '&#45;&#45;swiper-navigation-size' : '2rem'-->
-<!--    }"-->
-<!--      :loop="true"-->
-<!--      :pagination="{-->
-<!--      clickable: true,-->
-<!--      dynamicBullets: true,-->
-<!--    }"-->
-<!--      :centeredSlides="true"-->
-<!--      :autoplay="{-->
-<!--      delay: 2500,-->
-<!--    }"-->
-<!--      :navigation="true"-->
-<!--      :modules="[Autoplay, Pagination, Navigation]"-->
-<!--      @swiper="onSwiper"-->
-<!--    >-->
-<!--      <swiper-slide-->
-<!--        v-for="image in images" :key="image"-->
-<!--      ><img :src="image" /></swiper-slide>-->
-<!--    </swiper>-->
-    <div class="swiper-container" v-if='store.currentPageIndex === 4'>
-<!--      <swiper-->
-<!--              :space-between="0"-->
-<!--              :style="{-->
-<!--              '&#45;&#45;swiper-navigation-color': '#fff',-->
-<!--              '&#45;&#45;swiper-pagination-color': '#fff',-->
-<!--              '&#45;&#45;swiper-navigation-size' : '2rem'-->
-<!--            }"-->
-<!--              :loop="true"-->
-<!--              :pagination="{-->
-<!--              clickable: true,-->
-<!--              dynamicBullets: true,-->
-<!--            }"-->
-<!--              :centeredSlides="true"-->
-<!--              :autoplay="{-->
-<!--              delay: 2500,-->
-<!--            }"-->
-<!--              :navigation="true"-->
-<!--              :modules="[Autoplay, Pagination, Navigation]"-->
-<!--              @swiper="onSwiper"-->
-<!--            >-->
-<!--              <swiper-slide-->
-<!--                v-for="image in images" :key="image"-->
-<!--              ><img :src="image" /></swiper-slide>-->
-<!--            </swiper>-->
+    <div v-if="store.currentPageIndex === 4" class="swiper-container">
       <van-swipe class="my-swipe" style="width: 16rem" :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="image in images" :key="image">
           <img :src="image" />
