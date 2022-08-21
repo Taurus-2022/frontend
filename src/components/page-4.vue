@@ -79,7 +79,7 @@ export default {
 };
 </script>
 <script setup>
-import { useStore } from '../stores/pageIndex';
+import { useStore } from '../stores/store';
 
 const store = useStore();
 </script>

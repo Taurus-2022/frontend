@@ -9,8 +9,13 @@ export default {
 };
 </script>
 <script setup>
-import { useStore } from '../stores/pageIndex';
-import { ref } from 'vue';
+import { useStore } from '../stores/store';
+import { onMounted, ref } from 'vue';
+import { baseUrl } from '../constant';
+import { Dialog } from 'vant';
+import { inject } from 'vue';
+const axios = inject('axios');
+
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
   'https://bucket.taurus.cd.peanut996.cn/img/sp2.png',
@@ -25,10 +30,56 @@ const images = [
 ];
 
 const store = useStore();
-const sign = ref(false);
-function userSign() {
-  sign.value = true;
-}
+const sign = ref();
+const signedNumber = ref();
+onMounted(() => {
+  axios
+    .get(baseUrl + 'signatures/count')
+    .then((response) => {
+      if (response.status === 200 && response.data) {
+        signedNumber.value = response.data.count;
+      }
+    })
+    .catch(() => {
+      signedNumber.value = 20000;
+    });
+});
+const userSign = () => {
+  axios
+    .post(baseUrl + 'signatures', {
+      phone: store.currentUserPhoneNumber,
+      street: store.currentUserStreetInfo,
+    })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        axios
+          .get(baseUrl + 'signatures/count')
+          .then((response) => {
+            if (response.status === 200 && response.data) {
+              signedNumber.value = response.data.count;
+            }
+          })
+          .catch(() => {
+            signedNumber.value = 20000;
+          });
+        sign.value = true;
+        store.setCurrentUserIsSignedToday(true);
+      }
+    })
+    .catch((e) => {
+      console.log(e.response);
+      if (e.response.status === 400) {
+        console.log('-------------');
+        sign.value = true;
+        store.setCurrentUserIsSignedToday(true);
+      } else {
+        Dialog.alert({
+          message: '当前网络状况不佳，请稍后重试',
+        }).then(() => {});
+      }
+    });
+};
 </script>
 
 <template>
@@ -57,15 +108,15 @@ function userSign() {
       <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
     </div>
     <Transition name="fade">
-      <div v-show="sign === false" class="signed-container">
+      <div v-show="!store.currentUserIsSignedToday || sign === false" class="signed-container">
         <div class="sign-button" @click="userSign">点击签名</div>
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="sign === true" class="signed-container">
+      <div v-show="store.currentUserIsSignedToday || sign === true" class="signed-container">
         <p>
           你已成为第
-          <span>00000000</span>
+          <span>{{ signedNumber }}</span>
           位
         </p>
         <p>支持金牛区创建全国文明典范城市的人！</p>

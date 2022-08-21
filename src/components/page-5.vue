@@ -11,11 +11,13 @@ export default {
 </script>
 <script setup>
 import { ref } from 'vue';
-import { useStore } from '../stores/pageIndex';
+import { useStore } from '../stores/store';
 import { streetInfo } from '../assets/streetInfo';
-
 import 'intl-tel-input/build/js/utils';
 import { Dialog } from 'vant';
+import { inject } from 'vue';
+import { baseUrl } from '../constant';
+const axios = inject('axios');
 const store = useStore();
 const show = ref(false);
 const fieldValue = ref('');
@@ -48,11 +50,21 @@ const submit = () => {
     }).then(() => {});
     return;
   }
-
-  store.nextPageIndex();
-  setTimeout(() => {
-    document.getElementById('media').play();
-  }, 1000);
+  axios.get(baseUrl + 'signatures/status?phone=' + phoneNumber.value).then((response) => {
+    if (response.status === 200 && response.data) {
+      store.setCurrentUserIsSignedToday(response.data.isSigned);
+      store.setCurrentUserPhoneNumber(phoneNumber.value);
+      store.setCurrentUserStreetInfo(fieldValue.value);
+      store.nextPageIndex();
+      setTimeout(() => {
+        document.getElementById('media').play();
+      }, 1000);
+    } else {
+      Dialog.alert({
+        message: '当前网络状况不佳，请稍后重试',
+      }).then(() => {});
+    }
+  });
 };
 </script>
 

@@ -17,4 +17,5 @@ app.use(Dialog);
 app.use(Circle);
 app.use(touch);
 app.use(VueAxios, axios);
+app.provide('axios', app.config.globalProperties.axios);
 app.mount('#app');

@@ -7,7 +7,7 @@ import Page1 from './components/page-1.vue';
 // import Page4 from './components/page-4.vue';
 import Page5 from './components/page-5.vue';
 
-import { useStore } from './stores/pageIndex';
+import { useStore } from './stores/store';
 const store = useStore();
 const currentRate = ref(0);
 const completedLoading = ref(false);
@@ -91,8 +91,8 @@ onMounted(() => {
   <Transition name="fade">
     <page3 v-show="completedLoading && store.currentPageIndex === 4" />
   </Transition>
-  <!--    <page3 />-->
   <pageVideo />
+  <!--      <page5 />-->
 </template>
 
 <style scoped>
