@@ -1,17 +1,23 @@
 <script>
 import { Swipe, SwipeItem } from 'vant';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export default {
   components: {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
+    Swiper,
+    SwiperSlide,
   },
 };
 </script>
 <script setup>
 import { useStore } from '../stores/pageIndex';
-import { ref } from 'vue';
-
+import { onMounted, ref } from 'vue';
+import { Autoplay, Pagination, Navigation } from "swiper";
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
   'https://bucket.taurus.cd.peanut996.cn/img/sp2.png',
@@ -26,30 +32,80 @@ const images = [
 ];
 
 const store = useStore();
-
 const sign = ref(false);
 function userSign() {
   sign.value = true;
 }
-
-const nextPage = () => {
-  if (sign.value) {
-    store.firstPageIndex();
-  }
-};
+// const mySwiper = ref(null);
+// const onSwiper = (swiper) => {
+//   mySwiper.value = swiper;
+// }
+onMounted(() => {
+  // console.log(mySwiper);
+  // mySwiper.value.autoplay.start()
+})
 </script>
 
 <template>
   <div class="container">
-    <img class="background" src="/src/assets/p3.png" />
+    <img :class="['background', 'page-png']" src="/src/assets/p3.png" />
     <div class="text-header">
       <p>创建全国文明典范城市，</p>
       <p>需要每一位市民的参与！</p>
       <p>让我们一起践行</p>
       <p>"文明典范·你我共创" 公约吧！</p>
     </div>
-    <div class="swiper-container">
-      <van-swipe class="my-swipe" style="width: 16rem" :autoplay="3000" lazy-render indicator-color="white">
+<!--    <swiper-->
+<!--      v-if="store.currentPageIndex === 4"-->
+<!--      :space-between="0"-->
+<!--      :style="{-->
+<!--      '&#45;&#45;swiper-navigation-color': '#fff',-->
+<!--      '&#45;&#45;swiper-pagination-color': '#fff',-->
+<!--      '&#45;&#45;swiper-navigation-size' : '2rem'-->
+<!--    }"-->
+<!--      :loop="true"-->
+<!--      :pagination="{-->
+<!--      clickable: true,-->
+<!--      dynamicBullets: true,-->
+<!--    }"-->
+<!--      :centeredSlides="true"-->
+<!--      :autoplay="{-->
+<!--      delay: 2500,-->
+<!--    }"-->
+<!--      :navigation="true"-->
+<!--      :modules="[Autoplay, Pagination, Navigation]"-->
+<!--      @swiper="onSwiper"-->
+<!--    >-->
+<!--      <swiper-slide-->
+<!--        v-for="image in images" :key="image"-->
+<!--      ><img :src="image" /></swiper-slide>-->
+<!--    </swiper>-->
+    <div class="swiper-container" v-if='store.currentPageIndex === 4'>
+<!--      <swiper-->
+<!--              :space-between="0"-->
+<!--              :style="{-->
+<!--              '&#45;&#45;swiper-navigation-color': '#fff',-->
+<!--              '&#45;&#45;swiper-pagination-color': '#fff',-->
+<!--              '&#45;&#45;swiper-navigation-size' : '2rem'-->
+<!--            }"-->
+<!--              :loop="true"-->
+<!--              :pagination="{-->
+<!--              clickable: true,-->
+<!--              dynamicBullets: true,-->
+<!--            }"-->
+<!--              :centeredSlides="true"-->
+<!--              :autoplay="{-->
+<!--              delay: 2500,-->
+<!--            }"-->
+<!--              :navigation="true"-->
+<!--              :modules="[Autoplay, Pagination, Navigation]"-->
+<!--              @swiper="onSwiper"-->
+<!--            >-->
+<!--              <swiper-slide-->
+<!--                v-for="image in images" :key="image"-->
+<!--              ><img :src="image" /></swiper-slide>-->
+<!--            </swiper>-->
+      <van-swipe class="my-swipe" style="width: 16rem" :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="image in images" :key="image">
           <img :src="image" />
         </van-swipe-item>
@@ -70,7 +126,7 @@ const nextPage = () => {
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="sign === true" v-touch:swipeup="nextPage" class="signed-container">
+      <div v-show="sign === true" class="signed-container">
         <p>
           你已成为第
           <span>00000000</span>

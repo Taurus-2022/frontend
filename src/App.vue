@@ -8,6 +8,7 @@ import Page1 from './components/page-1.vue';
 import Page5 from './components/page-5.vue';
 
 import { useStore } from './stores/pageIndex';
+import pageSwiper from './components/pageSwiper.vue';
 const store = useStore();
 const currentRate = ref(0);
 const completedLoading = ref(false);
@@ -48,10 +49,10 @@ onMounted(() => {
     docEl.style.fontSize = rem + 'px';
   }
   function imgLoad(callback) {
-    const images = document.getElementsByTagName('img');
+    const images = document.getElementsByClassName('page-png');
     const timer = setInterval(() => {
       const completedImages = Array.from(images, (image) => image.complete).filter((complete) => complete === true).length;
-      currentRate.value = completedImages / images.length;
+      currentRate.value = Math.floor(completedImages / images.length * 100);
       if (images.length === completedImages) {
         callback();
         clearInterval(timer);
@@ -77,7 +78,7 @@ onMounted(() => {
 
 <template>
   <div v-if="!completedLoading" class="loadingContainer">
-    <van-circle v-if="!completedLoading" v-model:current-rate="currentRate" :rate="100" :speed="100" color="#4e8ea0" :text="text" />
+    <van-circle v-if="!completedLoading" v-model:current-rate="currentRate" color="#4e8ea0" :text="text" />
   </div>
   <Transition name="fade">
     <page1 v-show="completedLoading && store.currentPageIndex === 1" />
@@ -89,9 +90,9 @@ onMounted(() => {
     <page2 v-show="completedLoading && store.currentPageIndex === 3" />
   </Transition>
   <Transition name="fade">
-    <page3 v-show="completedLoading && store.currentPageIndex === 4" />
+    <page3 v-if="completedLoading && store.currentPageIndex === 4" />
   </Transition>
-  <!--  <page5 />-->
+<!--    <page3 />-->
   <pageVideo />
 </template>
 

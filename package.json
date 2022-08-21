@@ -14,6 +14,7 @@
     "@lucky-canvas/vue": "^0.1.11",
     "intl-tel-input": "^17.0.18",
     "pinia": "^2.0.16",
+    "swiper": "^8.3.2",
     "vant": "^3.5.0",
     "vue": "^3.2.37",
     "vue3-hand-mobile": "^1.0.3"
