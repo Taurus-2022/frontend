@@ -14,7 +14,7 @@ const nextPage = () => {
     <img :class="['bird', 'page-png']" src="/src/assets/p1-bird.png" />
     <img :class="['background', 'page-png']" src="/src/assets/p1-background.png" />
     <div class="slide-container">
-      <p>向下滑动</p>
+      <p>向上滑动</p>
       <van-icon class="down" name="arrow-down" />
     </div>
   </div>
