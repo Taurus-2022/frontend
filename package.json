@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@lucky-canvas/vue": "^0.1.11",
+    "axios": "^0.27.2",
     "intl-tel-input": "^17.0.18",
     "pinia": "^2.0.16",
     "vant": "^3.5.0",
     "vue": "^3.2.37",
+    "vue-axios": "^3.4.1",
     "vue3-hand-mobile": "^1.0.3"
   },
   "devDependencies": {

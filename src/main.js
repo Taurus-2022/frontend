@@ -5,6 +5,8 @@ import Circle, { Dialog, Icon } from 'vant';
 import touch from 'vue3-hand-mobile';
 import App from './App.vue';
 import './assets/main.css';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 const app = createApp(App);
 
@@ -14,4 +16,5 @@ app.use(Icon);
 app.use(Dialog);
 app.use(Circle);
 app.use(touch);
+app.use(VueAxios, axios);
 app.mount('#app');
