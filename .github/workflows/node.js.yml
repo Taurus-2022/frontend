@@ -23,12 +23,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload dist
-        uses: actions/upload-artifact@v3
-        with:
-          name: vue-app
-          path: dist
-
   deploy-dev:
     needs:
       - build
@@ -80,3 +74,9 @@ jobs:
           secretId: ${{ secrets.TENCENT_SECRET_ID }}
           secretKey: ${{ secrets.TENCENT_SECRET_KEY }}
           envId: ${{secrets.ENV_ID}}
+          
+      - name: Upload dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: vue-app
+          path: dist
