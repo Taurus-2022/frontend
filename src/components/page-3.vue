@@ -14,7 +14,6 @@ import { onMounted, ref } from 'vue';
 import { baseUrl } from '../constant';
 import { Dialog } from 'vant';
 import { inject } from 'vue';
-const axios = inject('axios');
 
 const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp1.png',
@@ -29,55 +28,71 @@ const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp10.png',
 ];
 
+const cryoptojs = inject('cryptojs');
+const axios = inject('axios');
 const store = useStore();
-const sign = ref();
+const isSigned = ref(false);
 const signedNumber = ref();
+const SecretId = ref();
+const SecretKey = ref();
+
 onMounted(() => {
-  axios
-    .get(baseUrl + 'signatures/count')
-    .then((response) => {
-      if (response.status === 200 && response.data) {
-        signedNumber.value = response.data.count;
-      }
-    })
-    .catch(() => {
-      signedNumber.value = 20000;
-    });
+  SecretId.value = window._tcbEnv ? window._tcbEnv.SEC_ID : 'sdsdsdsdsdsdsdsdsdsd'; // 密钥对的 SecretId
+  SecretKey.value = window._tcbEnv ? window._tcbEnv.SEC_KEY : 'sdsdsdsdsdsdsdsdsdsd'; // 密钥对的 SecretKey
 });
+
 const userSign = () => {
-  axios
+  const nowDate = new Date();
+  const dateTime = nowDate.toUTCString();
+  const source = 'xxxxxx'; // 签名水印值，可填写任意值
+  const auth = 'hmac id="' + atob(SecretId.value) + '", algorithm="hmac-sha1", headers="x-date source", signature="';
+  const signStr = 'x-date: ' + dateTime + '\n' + 'source: ' + source;
+  let sign = cryoptojs.HmacSHA1(signStr, atob(SecretKey.value));
+  sign = cryoptojs.enc.Base64.stringify(sign);
+  sign = auth + sign + '"';
+  const headers = {
+    Source: source,
+    'X-Date': dateTime,
+    Authorization: sign,
+    // 如果是微服务 API，Header 中需要添加'X-NameSpace-Code'、'X-MicroService-Name'两个字段，通用 API 不需要添加。
+    'X-NameSpace-Code': 'testmic',
+    'X-MicroService-Name': 'provider-demo',
+  };
+  const instance = axios.create({
+    timeout: 5000,
+    headers: { ...headers },
+    withCredentials: true,
+  });
+
+  instance
     .post(baseUrl + 'signatures', {
-      phone: store.currentUserPhoneNumber,
       street: store.currentUserStreetInfo,
     })
     .then((response) => {
-      console.log(response);
       if (response.status === 200) {
         axios
-          .get(baseUrl + 'signatures/count')
+          .get(baseUrl + 'signatures/count', {
+            headers: headers,
+            timeout: 5000,
+            withCredentials: true,
+          })
           .then((response) => {
             if (response.status === 200 && response.data) {
               signedNumber.value = response.data.count;
+              isSigned.value = true;
             }
           })
           .catch(() => {
             signedNumber.value = 20000;
+            isSigned.value = true;
           });
-        sign.value = true;
-        store.setCurrentUserIsSignedToday(true);
       }
     })
     .catch((e) => {
-      console.log(e.response);
-      if (e.response.status === 400) {
-        console.log('-------------');
-        sign.value = true;
-        store.setCurrentUserIsSignedToday(true);
-      } else {
-        Dialog.alert({
-          message: '当前网络状况不佳，请稍后重试',
-        }).then(() => {});
-      }
+      console.log(e);
+      Dialog.alert({
+        message: '当前网络状况不佳，请稍后重试',
+      }).then(() => {});
     });
 };
 </script>
@@ -102,18 +117,18 @@ const userSign = () => {
         <van-icon name="arrow" size="2rem" />
       </div>
     </div>
-<!--    <div class="slide-container">-->
-<!--      <p>创建文明典范城市是一场没有终点的幸福接力，</p>-->
-<!--      <p>它渗透于城市发展中、融合在市井生活里，</p>-->
-<!--      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>-->
-<!--    </div>-->
+    <!--    <div class="slide-container">-->
+    <!--      <p>创建文明典范城市是一场没有终点的幸福接力，</p>-->
+    <!--      <p>它渗透于城市发展中、融合在市井生活里，</p>-->
+    <!--      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>-->
+    <!--    </div>-->
     <Transition name="fade">
-      <div v-show="!store.currentUserIsSignedToday || sign === false" class="signed-container">
+      <div v-show="isSigned === false" class="signed-container">
         <div class="sign-button" @click="userSign">点击签名</div>
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="store.currentUserIsSignedToday || sign === true" class="signed-container">
+      <div v-show="isSigned === true" class="signed-container">
         <p>
           您是第
           <span>{{ signedNumber }}</span>
@@ -312,7 +327,7 @@ const userSign = () => {
     line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 52rem;
+    top: 54rem;
     left: 50%;
     transform: translateX(-50%);
     p {
@@ -324,54 +339,54 @@ const userSign = () => {
       }
     }
     @media screen and (min-width: 370px) {
-      top: 54rem;
+      top: 56rem;
     }
     @media screen and (min-width: 390px) {
-      top: 49rem;
-    }
-    @media screen and (min-width: 400px) {
       top: 51rem;
     }
+    @media screen and (min-width: 400px) {
+      top: 53rem;
+    }
     @media screen and (min-width: 410px) {
-      top: 52rem;
-    }
-    @media screen and (min-width: 450px) {
-      top: 57rem;
-    }
-    @media screen and (min-width: 470px) {
-      top: 60rem;
-    }
-    @media screen and (min-width: 500px) {
-      top: 52rem;
-    }
-    @media screen and (min-width: 530px) {
-      top: 55rem;
-    }
-    @media screen and (min-width: 550px) {
       top: 54rem;
     }
-    @media screen and (min-width: 580px) {
+    @media screen and (min-width: 450px) {
+      top: 59rem;
+    }
+    @media screen and (min-width: 470px) {
+      top: 62rem;
+    }
+    @media screen and (min-width: 500px) {
+      top: 54rem;
+    }
+    @media screen and (min-width: 530px) {
+      top: 57rem;
+    }
+    @media screen and (min-width: 550px) {
       top: 56rem;
+    }
+    @media screen and (min-width: 580px) {
+      top: 58rem;
     }
     @media screen and (min-width: 600px) {
       font-size: 0.7rem;
-      top: 49rem;
+      top: 51rem;
       span {
         font-size: 0.8rem;
       }
     }
     @media screen and (min-width: 700px) {
       font-size: 0.6rem;
-      top: 49rem;
+      top: 51rem;
       span {
         font-size: 0.7rem;
       }
     }
     @media screen and (min-width: 750px) {
-      top: 49rem;
+      top: 51rem;
     }
     @media screen and (min-width: 800px) {
-      top: 52rem;
+      top: 54rem;
     }
   }
 }

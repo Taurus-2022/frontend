@@ -6,7 +6,6 @@ import Page3 from './components/page-3.vue';
 import Page1 from './components/page-1.vue';
 // import Page4 from './components/page-4.vue';
 import Page5 from './components/page-5.vue';
-
 import { useStore } from './stores/store';
 const store = useStore();
 const currentRate = ref(0);
