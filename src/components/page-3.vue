@@ -102,11 +102,11 @@ const userSign = () => {
         <van-icon name="arrow" size="2rem" />
       </div>
     </div>
-    <div class="slide-container">
-      <p>创建文明典范城市是一场没有终点的幸福接力，</p>
-      <p>它渗透于城市发展中、融合在市井生活里，</p>
-      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>
-    </div>
+<!--    <div class="slide-container">-->
+<!--      <p>创建文明典范城市是一场没有终点的幸福接力，</p>-->
+<!--      <p>它渗透于城市发展中、融合在市井生活里，</p>-->
+<!--      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>-->
+<!--    </div>-->
     <Transition name="fade">
       <div v-show="!store.currentUserIsSignedToday || sign === false" class="signed-container">
         <div class="sign-button" @click="userSign">点击签名</div>
@@ -115,11 +115,12 @@ const userSign = () => {
     <Transition name="fade">
       <div v-show="store.currentUserIsSignedToday || sign === true" class="signed-container">
         <p>
-          你已成为第
+          您是第
           <span>{{ signedNumber }}</span>
           位
         </p>
         <p>参与成都市创建全国文明典范城市的市民！</p>
+        <p>感谢您的参与！</p>
       </div>
     </Transition>
   </div>
@@ -311,7 +312,7 @@ const userSign = () => {
     line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 58rem;
+    top: 52rem;
     left: 50%;
     transform: translateX(-50%);
     p {
@@ -323,54 +324,54 @@ const userSign = () => {
       }
     }
     @media screen and (min-width: 370px) {
-      top: 60rem;
+      top: 54rem;
     }
     @media screen and (min-width: 390px) {
-      top: 55rem;
+      top: 49rem;
     }
     @media screen and (min-width: 400px) {
-      top: 57rem;
+      top: 51rem;
     }
     @media screen and (min-width: 410px) {
-      top: 58rem;
+      top: 52rem;
     }
     @media screen and (min-width: 450px) {
-      top: 63rem;
+      top: 57rem;
     }
     @media screen and (min-width: 470px) {
-      top: 66rem;
-    }
-    @media screen and (min-width: 500px) {
-      top: 58rem;
-    }
-    @media screen and (min-width: 530px) {
-      top: 61rem;
-    }
-    @media screen and (min-width: 550px) {
       top: 60rem;
     }
+    @media screen and (min-width: 500px) {
+      top: 52rem;
+    }
+    @media screen and (min-width: 530px) {
+      top: 55rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 54rem;
+    }
     @media screen and (min-width: 580px) {
-      top: 62rem;
+      top: 56rem;
     }
     @media screen and (min-width: 600px) {
       font-size: 0.7rem;
-      top: 55rem;
+      top: 49rem;
       span {
         font-size: 0.8rem;
       }
     }
     @media screen and (min-width: 700px) {
       font-size: 0.6rem;
-      top: 55rem;
+      top: 49rem;
       span {
         font-size: 0.7rem;
       }
     }
     @media screen and (min-width: 750px) {
-      top: 55rem;
+      top: 49rem;
     }
     @media screen and (min-width: 800px) {
-      top: 58rem;
+      top: 52rem;
     }
   }
 }
