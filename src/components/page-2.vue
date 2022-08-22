@@ -31,8 +31,8 @@ const nextPage = () => {
     <img :class="['text', 'page-png']" src="/src/assets/p2-text.png" />
     <img :class="['train', 'page-png']" src="/src/assets/p2-train.png" />
     <div v-if="time" class="slide-container">
-      <p>向上滑动</p>
       <van-icon class="down" name="arrow-up" />
+      <p>向上滑动</p>
     </div>
   </div>
 </template>
@@ -106,11 +106,11 @@ const nextPage = () => {
 
   @keyframes downMove {
     from {
-      top: 0;
+      top: 0rem;
       opacity: 0.4;
     }
     to {
-      top: 0.8rem;
+      top: -1rem;
       opacity: 0.4;
     }
     75% {

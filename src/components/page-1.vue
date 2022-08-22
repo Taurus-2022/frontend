@@ -14,8 +14,8 @@ const nextPage = () => {
     <img :class="['bird', 'page-png']" src="/src/assets/p1-bird.png" />
     <img :class="['background', 'page-png']" src="/src/assets/p1-background.png" />
     <div class="slide-container">
-      <p>向上滑动</p>
       <van-icon class="down" name="arrow-up" />
+      <p>向上滑动</p>
     </div>
   </div>
 </template>
@@ -102,11 +102,11 @@ const nextPage = () => {
 
 @keyframes downMove {
   from {
-    top: 0;
+    top: 0rem;
     opacity: 0.4;
   }
   to {
-    top: 0.8rem;
+    top: -1rem;
     opacity: 0.4;
   }
   75% {
