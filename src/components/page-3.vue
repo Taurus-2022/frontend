@@ -119,7 +119,7 @@ const userSign = () => {
           <span>{{ signedNumber }}</span>
           位
         </p>
-        <p>支持成都市创建全国文明典范城市的居民！</p>
+        <p>参与成都市创建全国文明典范城市的市民！</p>
       </div>
     </Transition>
   </div>
