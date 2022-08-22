@@ -7,7 +7,6 @@ import App from './App.vue';
 import './assets/main.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueCryptojs from 'vue-cryptojs';
 
 const app = createApp(App);
 
@@ -19,5 +18,4 @@ app.use(Circle);
 app.use(touch);
 app.use(VueAxios, axios);
 app.provide('axios', app.config.globalProperties.axios);
-app.use(VueCryptojs);
 app.mount('#app');
