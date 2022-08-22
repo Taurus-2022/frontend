@@ -58,6 +58,7 @@ const submit = () => {
       store.nextPageIndex();
       setTimeout(() => {
         document.getElementById('media').play();
+        setTimeout(() => {document.getElementById('media').muted = false;}, 10)
       }, 1000);
     } else {
       Dialog.alert({

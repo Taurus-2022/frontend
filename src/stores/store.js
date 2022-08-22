@@ -25,7 +25,6 @@ export const useStore = defineStore({
       if (this.pageIndex === 1) {
         this.pageIndex;
       }
-      this.pageIndex--;
     },
     firstPageIndex() {
       this.pageIndex = 1;

@@ -8,19 +8,14 @@ const afterVideoPlay = () => {
   time.value = !time.value;
   state.value = true;
 };
-const unmuteVideo = () => {
-  document.getElementById('media').muted = false;
-};
 
 onMounted(() => {
   if (!state.value) {
     document.getElementById('media').addEventListener('ended', afterVideoPlay, false);
   }
-  document.getElementById('media').addEventListener('play', unmuteVideo, false);
 });
 onUnmounted(() => {
   document.getElementById('media').removeEventListener('ended', afterVideoPlay);
-  document.getElementById('media').removeEventListener('play', unmuteVideo);
 });
 
 const nextPage = () => {
