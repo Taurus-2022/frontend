@@ -24,15 +24,15 @@ const store = useStore();
 <style lang="scss" scoped>
 .video-container {
   position: absolute;
-  min-width: 324px;
-  top: 33%;
+  min-width: 100%;
+  top: 37%;
   left: 50%;
   transform: translateX(-50%);
   @media screen and (min-height: 780px) {
-    top: 30%;
+    top: 34%;
   }
   @media screen and (min-height: 1000px) {
-    top: 30%;
+    top: 34%;
   }
 
   video {
