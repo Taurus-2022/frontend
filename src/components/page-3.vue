@@ -10,7 +10,7 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/store';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { baseUrl } from '../constant';
 import { Dialog } from 'vant';
 import { inject } from 'vue';
@@ -28,39 +28,14 @@ const images = [
   'https://bucket.taurus.cd.peanut996.cn/img/sp10.png',
 ];
 
-const cryoptojs = inject('cryptojs');
 const axios = inject('axios');
 const store = useStore();
 const isSigned = ref(false);
 const signedNumber = ref();
-const SecretId = ref();
-const SecretKey = ref();
-
-onMounted(() => {
-  SecretId.value = window._tcbEnv ? window._tcbEnv.SEC_ID : 'sdsdsdsdsdsdsdsdsdsd'; // 密钥对的 SecretId
-  SecretKey.value = window._tcbEnv ? window._tcbEnv.SEC_KEY : 'sdsdsdsdsdsdsdsdsdsd'; // 密钥对的 SecretKey
-});
 
 const userSign = () => {
-  const nowDate = new Date();
-  const dateTime = nowDate.toUTCString();
-  const source = 'xxxxxx'; // 签名水印值，可填写任意值
-  const auth = 'hmac id="' + atob(SecretId.value) + '", algorithm="hmac-sha1", headers="x-date source", signature="';
-  const signStr = 'x-date: ' + dateTime + '\n' + 'source: ' + source;
-  let sign = cryoptojs.HmacSHA1(signStr, atob(SecretKey.value));
-  sign = cryoptojs.enc.Base64.stringify(sign);
-  sign = auth + sign + '"';
-  const headers = {
-    Source: source,
-    'X-Date': dateTime,
-    Authorization: sign,
-    // 如果是微服务 API，Header 中需要添加'X-NameSpace-Code'、'X-MicroService-Name'两个字段，通用 API 不需要添加。
-    'X-NameSpace-Code': 'testmic',
-    'X-MicroService-Name': 'provider-demo',
-  };
   const instance = axios.create({
     timeout: 5000,
-    headers: { ...headers },
     withCredentials: true,
   });
 
@@ -72,7 +47,6 @@ const userSign = () => {
       if (response.status === 200) {
         axios
           .get(baseUrl + 'signatures/count', {
-            headers: headers,
             timeout: 5000,
             withCredentials: true,
           })

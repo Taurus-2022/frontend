@@ -18,7 +18,6 @@
     "vant": "^3.5.0",
     "vue": "^3.2.37",
     "vue-axios": "^3.4.1",
-    "vue-cryptojs": "^2.3.0",
     "vue3-hand-mobile": "^1.0.3"
   },
   "devDependencies": {
