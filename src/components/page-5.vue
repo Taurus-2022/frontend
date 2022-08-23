@@ -44,10 +44,8 @@ const submit = () => {
     store.nextPageIndex();
     setTimeout(() => {
       document.getElementById('media').play();
-      setTimeout(() => {
-        document.getElementById('media').muted = false;
-      }, 1);
-    }, 1000);
+      document.getElementById('media').muted = false;
+    }, 500);
   }
 };
 </script>

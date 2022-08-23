@@ -34,6 +34,7 @@ export const useStore = defineStore({
       } else if (this.pageIndex === 2) {
         this.pageIndex = 1;
       } else if (this.pageIndex === 3) {
+        document.getElementById('media').pause();
         this.pageIndex = 1;
       } else if (this.pageIndex === 4) {
         this.pageIndex = 3;
