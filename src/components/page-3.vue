@@ -78,7 +78,7 @@ const userSign = () => {
       <p>创建全国文明典范城市，</p>
       <p>需要每一位市民的参与！</p>
       <p>让我们一起践行</p>
-      <p>"文明典范·你我共创" 公约吧！</p>
+      <p>"文明典范·共建共享" 公约吧！</p>
     </div>
     <div v-if="store.currentPageIndex === 4" class="swiper-container">
       <van-swipe class="my-swipe" style="width: 16rem" :autoplay="3000" indicator-color="white">
