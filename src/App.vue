@@ -12,7 +12,6 @@ const currentRate = ref(0);
 const completedLoading = ref(false);
 const text = computed(() => '页面加载 ' + currentRate.value.toFixed(0) + '%');
 onMounted(() => {
-  // console.log(`the component is now mounted.`);
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
   const vh = window.innerHeight * 0.01;
   // Then we set the value in the --vh custom property to the root of the document
@@ -58,7 +57,6 @@ onMounted(() => {
     }, 300);
   }
   imgLoad(() => {
-    console.log('加载完毕');
     completedLoading.value = true;
     currentRate.value = 1;
   });
@@ -78,6 +76,7 @@ onMounted(() => {
   <div v-if="!completedLoading" class="loadingContainer">
     <van-circle v-if="!completedLoading" v-model:current-rate="currentRate" color="#4e8ea0" :text="text" />
   </div>
+  <go-back-btn v-show="completedLoading && store.currentPageIndex !== 1" />
   <Transition name="fade">
     <page1 v-show="completedLoading && store.currentPageIndex === 1" />
   </Transition>
@@ -91,7 +90,7 @@ onMounted(() => {
     <page3 v-show="completedLoading && store.currentPageIndex === 4" />
   </Transition>
   <pageVideo />
-  <!--      <page5 />-->
+  <!--        <page3 />-->
 </template>
 
 <style scoped>

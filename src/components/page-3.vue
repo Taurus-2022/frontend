@@ -10,7 +10,7 @@ export default {
 </script>
 <script setup>
 import { useStore } from '../stores/store';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { baseUrl } from '../constant';
 import { Dialog } from 'vant';
 import { inject } from 'vue';
@@ -32,7 +32,21 @@ const axios = inject('axios');
 const store = useStore();
 const isSigned = ref(false);
 const signedNumber = ref();
-
+onMounted(() => {
+  axios
+    .get(baseUrl + 'signatures/count', {
+      timeout: 5000,
+      withCredentials: true,
+    })
+    .then((response) => {
+      if (response.status === 200 && response.data) {
+        signedNumber.value = response.data.count;
+      }
+    })
+    .catch(() => {
+      signedNumber.value = 20000;
+    });
+});
 const userSign = () => {
   const instance = axios.create({
     timeout: 5000,
@@ -54,6 +68,7 @@ const userSign = () => {
             if (response.status === 200 && response.data) {
               signedNumber.value = response.data.count;
               isSigned.value = true;
+              store.setCurrentUserIsSignedToday(true);
             }
           })
           .catch(() => {
@@ -91,18 +106,13 @@ const userSign = () => {
         <van-icon name="arrow" size="2rem" />
       </div>
     </div>
-    <!--    <div class="slide-container">-->
-    <!--      <p>创建文明典范城市是一场没有终点的幸福接力，</p>-->
-    <!--      <p>它渗透于城市发展中、融合在市井生活里，</p>-->
-    <!--      <p>让我们诗意栖居的家园永葆生命力、充满感召力。</p>-->
-    <!--    </div>-->
     <Transition name="fade">
-      <div v-show="isSigned === false" class="signed-container">
+      <div v-show="!store.currentUserIsSignedToday && isSigned === false" class="signed-container">
         <div class="sign-button" @click="userSign">点击签名</div>
       </div>
     </Transition>
     <Transition name="fade">
-      <div v-show="isSigned === true" class="signed-container">
+      <div v-show="store.currentUserIsSignedToday && isSigned === true" class="signed-container">
         <p>
           您是第
           <span>{{ signedNumber }}</span>
@@ -137,23 +147,26 @@ const userSign = () => {
     line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 9.3rem;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
+    @media screen and (min-width: 370px) {
+      top: 24%;
+    }
     @media screen and (min-width: 390px) {
-      top: 9rem;
+      top: 19%;
     }
     @media screen and (min-width: 400px) {
-      top: 9.2rem;
+      top: 19%;
     }
     @media screen and (min-width: 450px) {
-      top: 10rem;
+      top: 19%;
     }
     @media screen and (min-width: 500px) {
-      top: 9rem;
+      top: 19%;
     }
     @media screen and (min-width: 550px) {
-      top: 10rem;
+      top: 19%;
     }
     @media screen and (min-width: 600px) {
       font-size: 0.7rem;
@@ -161,10 +174,13 @@ const userSign = () => {
     }
     @media screen and (min-width: 700px) {
       font-size: 0.6rem;
-      top: 9rem;
+      top: 32%;
     }
     @media screen and (min-width: 800px) {
-      top: 9.2rem;
+      top: 30%;
+    }
+    @media screen and (min-width: 1000px) {
+      top: 35%;
     }
   }
 
@@ -172,7 +188,7 @@ const userSign = () => {
     position: relative;
     min-width: 252px;
     width: 16rem;
-    top: 22rem;
+    top: 45%;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
@@ -186,31 +202,36 @@ const userSign = () => {
       align-items: center;
       justify-content: space-between;
     }
-
+    @media screen and (min-width: 370px) {
+      top: 52%;
+    }
     @media screen and (min-width: 390px) {
-      top: 20rem;
+      top: 43%;
     }
     @media screen and (min-width: 400px) {
-      top: 21rem;
+      top: 43%;
     }
     @media screen and (min-width: 450px) {
-      top: 23rem;
+      top: 43%;
     }
 
     @media screen and (min-width: 500px) {
-      top: 20rem;
+      top: 52%;
     }
     @media screen and (min-width: 550px) {
-      top: 23rem;
+      top: 52%;
     }
     @media screen and (min-width: 600px) {
-      top: 19rem;
+      top: 52%;
     }
     @media screen and (min-width: 700px) {
-      top: 19rem;
+      top: 70%;
     }
     @media screen and (min-width: 800px) {
-      top: 20rem;
+      top: 69%;
+    }
+    @media screen and (min-width: 1000px) {
+      top: 72%;
     }
   }
 
@@ -222,65 +243,6 @@ const userSign = () => {
     }
     color: #fff;
     text-align: center;
-  }
-
-  .slide-container {
-    min-width: 295.2px;
-    width: 82vw;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    position: absolute;
-    text-align: center;
-    top: 52rem;
-    left: 50%;
-    transform: translateX(-50%);
-    p {
-      text-align: center;
-    }
-    @media screen and (min-width: 370px) {
-      top: 54rem;
-    }
-    @media screen and (min-width: 390px) {
-      top: 49.5rem;
-    }
-    @media screen and (min-width: 400px) {
-      top: 51rem;
-    }
-    @media screen and (min-width: 410px) {
-      top: 53rem;
-    }
-    @media screen and (min-width: 450px) {
-      top: 57rem;
-    }
-    @media screen and (min-width: 470px) {
-      top: 60rem;
-    }
-    @media screen and (min-width: 500px) {
-      top: 53rem;
-    }
-    @media screen and (min-width: 530px) {
-      top: 57rem;
-    }
-    @media screen and (min-width: 550px) {
-      top: 58rem;
-    }
-    @media screen and (min-width: 580px) {
-      top: 62rem;
-    }
-    @media screen and (min-width: 600px) {
-      font-size: 0.7rem;
-      top: 50rem;
-    }
-    @media screen and (min-width: 700px) {
-      font-size: 0.6rem;
-      top: 52rem;
-    }
-    @media screen and (min-width: 750px) {
-      top: 50rem;
-    }
-    @media screen and (min-width: 800px) {
-      top: 52rem;
-    }
   }
 
   .sign-button {
@@ -301,7 +263,7 @@ const userSign = () => {
     line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 54rem;
+    top: 57rem;
     left: 50%;
     transform: translateX(-50%);
     p {
@@ -313,54 +275,57 @@ const userSign = () => {
       }
     }
     @media screen and (min-width: 370px) {
-      top: 56rem;
-    }
-    @media screen and (min-width: 390px) {
-      top: 51rem;
-    }
-    @media screen and (min-width: 400px) {
-      top: 53rem;
-    }
-    @media screen and (min-width: 410px) {
-      top: 54rem;
-    }
-    @media screen and (min-width: 450px) {
       top: 59rem;
     }
-    @media screen and (min-width: 470px) {
-      top: 62rem;
+    @media screen and (min-width: 390px) {
+      top: 54.5rem;
     }
-    @media screen and (min-width: 500px) {
-      top: 54rem;
+    @media screen and (min-width: 400px) {
+      top: 50.5rem;
     }
-    @media screen and (min-width: 530px) {
-      top: 57rem;
+    @media screen and (min-width: 410px) {
+      top: 58rem;
     }
-    @media screen and (min-width: 550px) {
+    @media screen and (min-width: 450px) {
       top: 56rem;
     }
+    @media screen and (min-width: 470px) {
+      top: 59rem;
+    }
+    @media screen and (min-width: 500px) {
+      top: 59rem;
+    }
+    @media screen and (min-width: 530px) {
+      top: 62rem;
+    }
+    @media screen and (min-width: 550px) {
+      top: 59rem;
+    }
     @media screen and (min-width: 580px) {
-      top: 58rem;
+      top: 59rem;
     }
     @media screen and (min-width: 600px) {
       font-size: 0.7rem;
-      top: 51rem;
+      top: 48rem;
       span {
         font-size: 0.8rem;
       }
     }
     @media screen and (min-width: 700px) {
       font-size: 0.6rem;
-      top: 51rem;
+      top: 53rem;
       span {
         font-size: 0.7rem;
       }
     }
     @media screen and (min-width: 750px) {
-      top: 51rem;
+      top: 54rem;
     }
     @media screen and (min-width: 800px) {
-      top: 54rem;
+      top: 58rem;
+    }
+    @media screen and (min-width: 900px) {
+      top: 65rem;
     }
   }
 }

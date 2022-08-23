@@ -18,12 +18,25 @@ export const useStore = defineStore({
     nextPageIndex() {
       if (this.pageIndex === 4) {
         this.pageIndex;
+      } else if (this.pageIndex === 1) {
+        if (this.streetInfo) {
+          this.pageIndex = 3;
+        } else {
+          this.pageIndex = 2;
+        }
+      } else {
+        this.pageIndex++;
       }
-      this.pageIndex++;
     },
     previousPageIndex() {
       if (this.pageIndex === 1) {
         this.pageIndex;
+      } else if (this.pageIndex === 2) {
+        this.pageIndex = 1;
+      } else if (this.pageIndex === 3) {
+        this.pageIndex = 1;
+      } else if (this.pageIndex === 4) {
+        this.pageIndex = 3;
       }
     },
     firstPageIndex() {

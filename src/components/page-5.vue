@@ -15,9 +15,7 @@ import { useStore } from '../stores/store';
 import { streetInfo } from '../assets/streetInfo';
 import 'intl-tel-input/build/js/utils';
 import { Dialog } from 'vant';
-// import { inject } from 'vue';
-// import { baseUrl } from '../constant';
-// const axios = inject('axios');
+
 const store = useStore();
 const show = ref(false);
 const fieldValue = ref('');

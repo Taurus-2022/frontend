@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import VueLuckyCanvas from '@lucky-canvas/vue';
-import Circle, { Dialog, Icon } from 'vant';
+import Circle, { Dialog, Icon, Button } from 'vant';
 import touch from 'vue3-hand-mobile';
 import App from './App.vue';
 import './assets/main.css';
@@ -14,6 +14,7 @@ app.use(createPinia());
 app.use(VueLuckyCanvas);
 app.use(Icon);
 app.use(Dialog);
+app.use(Button);
 app.use(Circle);
 app.use(touch);
 app.use(VueAxios, axios);

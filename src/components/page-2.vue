@@ -1,6 +1,7 @@
 <script setup>
 import { useStore } from '../stores/store';
 import { onMounted, onUnmounted, ref } from 'vue';
+
 const store = useStore();
 const time = ref(false);
 const state = ref(false);
