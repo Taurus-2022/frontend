@@ -9,10 +9,10 @@ const nextPage = () => {
 
 <template>
   <div id="page1" v-touch:swipeup="nextPage" class="container">
-    <img :class="['logo', 'page-png']" src="/src/assets/p1-logo.png" />
-    <img :class="['title', 'page-png']" src="/src/assets/p1-title-cloud.png" />
-    <img :class="['bird', 'page-png']" src="/src/assets/p1-bird.png" />
-    <img :class="['background', 'page-png']" src="/src/assets/p1-background.png" />
+    <img :class="['logo', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p1-logo.png" />
+    <img :class="['title', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p1-title-cloud.png" />
+    <img :class="['bird', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p1-bird.png" />
+    <img :class="['background', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p1-background.png" />
     <div class="slide-container">
       <van-icon class="down" name="arrow-up" />
       <p>向上滑动</p>

@@ -60,7 +60,7 @@ const submit = () => {
       <van-divider />
       <van-button round block type="primary" color="#4e8ea0" native-type="submit" @click="submit">提 交</van-button>
     </div>
-    <img :class="['background', 'page-png']" src="/src/assets/p5-background.png" />
+    <img :class="['background', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p5-background.png" />
   </div>
 </template>
 

@@ -28,9 +28,9 @@ const nextPage = () => {
 <script setup></script>
 <template>
   <div id="page2" v-touch:swipeup="nextPage" class="container">
-    <img :class="['background', 'page-png']" src="/src/assets/p2-background.png" />
-    <img :class="['text', 'page-png']" src="/src/assets/p2-text.png" />
-    <img :class="['train', 'page-png']" src="/src/assets/p2-train.png" />
+    <img :class="['background', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p2-background.png" />
+    <img :class="['text', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p2-text.png" />
+    <img :class="['train', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p2-train.png" />
     <div v-if="time" class="slide-container">
       <van-icon class="down" name="arrow-up" />
       <p>向上滑动</p>

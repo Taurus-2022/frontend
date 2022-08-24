@@ -88,7 +88,7 @@ const userSign = () => {
 
 <template>
   <div class="container">
-    <img :class="['background', 'page-png']" src="/src/assets/p3.png" />
+    <img :class="['background', 'page-png']" src="https://bucket.taurus.cd.peanut996.cn/img/p3.png" />
     <div class="text-header">
       <p>创建全国文明典范城市，</p>
       <p>需要每一位市民的参与！</p>
@@ -263,7 +263,7 @@ const userSign = () => {
     line-height: 1.5;
     position: absolute;
     text-align: center;
-    top: 57rem;
+    top: 51rem;
     left: 50%;
     transform: translateX(-50%);
     p {
@@ -275,34 +275,34 @@ const userSign = () => {
       }
     }
     @media screen and (min-width: 370px) {
-      top: 59rem;
+      top: 53rem;
     }
     @media screen and (min-width: 390px) {
-      top: 54.5rem;
+      top: 49.5rem;
     }
     @media screen and (min-width: 400px) {
       top: 50.5rem;
     }
     @media screen and (min-width: 410px) {
-      top: 58rem;
+      top: 52rem;
     }
     @media screen and (min-width: 450px) {
-      top: 56rem;
+      top: 52rem;
     }
     @media screen and (min-width: 470px) {
-      top: 59rem;
+      top: 56rem;
     }
     @media screen and (min-width: 500px) {
-      top: 59rem;
+      top: 56rem;
     }
     @media screen and (min-width: 530px) {
-      top: 62rem;
+      top: 56rem;
     }
     @media screen and (min-width: 550px) {
-      top: 59rem;
+      top: 56rem;
     }
     @media screen and (min-width: 580px) {
-      top: 59rem;
+      top: 48rem;
     }
     @media screen and (min-width: 600px) {
       font-size: 0.7rem;
@@ -319,13 +319,13 @@ const userSign = () => {
       }
     }
     @media screen and (min-width: 750px) {
-      top: 54rem;
+      top: 48rem;
     }
     @media screen and (min-width: 800px) {
-      top: 58rem;
+      top: 52rem;
     }
     @media screen and (min-width: 900px) {
-      top: 65rem;
+      top: 57.5rem;
     }
   }
 }
